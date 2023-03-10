@@ -70,10 +70,13 @@ html,body{
   width: 100%;
   left: 0;
   top: 0;
-  display: flex;
   padding: 44px 0 80px 0;
 }
-
+.cards__box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
 .footer {
   width: 100%;
   left: 0;
@@ -82,11 +85,9 @@ html,body{
   border-top: 1px solid #C8945D;
 }
 
-.footer__container {}
 .footer__items {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 21px 0;
 }
-.footer__item {}

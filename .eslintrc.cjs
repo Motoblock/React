@@ -28,7 +28,6 @@ module.exports = {
     'comma-dangle': ['error', 'only-multiline'],
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'css.lint.emptyRules': 'ignore',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     '@typescript-eslint/interface-name-prefix': 'off',
