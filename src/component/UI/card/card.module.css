@@ -38,3 +38,16 @@
   line-height: 1;
   padding: 0 0 0 10px;
 }
+
+.card__images {
+  position: relative;
+  text-align: center;
+  margin: 8px 8px 11px 8px;
+}
+
+.card__images img {
+  width: 286px;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+}

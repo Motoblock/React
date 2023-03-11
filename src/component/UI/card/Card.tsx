@@ -15,21 +15,30 @@ export interface CardCatProps {
   counts: number;
   catterys: string;
   description: string;
+  image: string;
 }
+class Card extends React.Component<CardCatProps, { value: string }> {
+  // constructor(props: CardCatProps) {
+  //   super(props);
+  // }
 
-const Card = (props: CardCatProps) => {
-  return (
-    <div className={stCard.cards__card}>
-      <div className={stCard.card__text}>
-        <div className={stCard.card__age}>{props.age}</div>
-        <div className={stCard.card__name}>{props.name}</div>
-        <div className={stCard.card__breed}>{props.breed}</div>
-        <div className={stCard.card__cattery}>{props.catterys}</div>
-        <div className={stCard.card__price}>{props.price}</div>
-        <div className={stCard.card__rating}>{props.raiting}</div>
+  render() {
+    const link = `${this.props.image}`;
+    return (
+      <div className={stCard.cards__card}>
+        <div className={stCard.card__images}>
+          <img src={link} alt={this.props.description} />
+        </div>
+        <div className={stCard.card__text}>
+          <div className={stCard.card__age}>{this.props.age} месяцев</div>
+          <div className={stCard.card__name}>{this.props.name}</div>
+          <div className={stCard.card__breed}>{this.props.breed}</div>
+          <div className={stCard.card__cattery}>{this.props.catterys}</div>
+          <div className={stCard.card__price}>{this.props.price}</div>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Card;
