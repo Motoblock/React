@@ -1,7 +1,3 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import './App.css'
-
 import { Routes, Route } from 'react-router-dom';
 import Main from './page/main/main';
 import About from './page/about/about';
