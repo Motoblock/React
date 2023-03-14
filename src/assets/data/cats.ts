@@ -16,7 +16,7 @@ const catsData: Array<CardCatProps> = [
     counts: 11,
     description: `Ласковый и игривый, умный и красивый. Любит играть, спать и кушать. Тянуться к человеку, очень
     любознателен. Будет всегда рядом, хороший помощник и верный друг.`,
-    image: './src/assets/images/cats/1/1.jpg',
+    image: './../assets/images/cats/1/1.jpg',
   },
   {
     id: 2,
