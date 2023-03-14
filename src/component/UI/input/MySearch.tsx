@@ -16,7 +16,7 @@ class MySearch extends React.Component<SearchProps, { value: string }> {
     const searchInput = e.target as HTMLInputElement;
 
     this.setState({ value: searchInput.value });
-    localStorage.setItem('searchInput', searchInput.value);
+    // localStorage.setItem('searchInput', searchInput.value);
   }
   componentWillUnmount() {
     if (!this.state) return;

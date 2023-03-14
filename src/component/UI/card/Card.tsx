@@ -1,5 +1,6 @@
 import React from 'react';
 import stCard from './../card/card.module.css';
+// import * as img from './../../../assets/data/catImages';
 
 export interface CardCatProps {
   id: number;
@@ -24,9 +25,12 @@ class Card extends React.Component<CardCatProps, { value: string }> {
 
   render() {
     const link = `${this.props.image}`;
+    // const link = `image${this.props.id}`;
+    //require('../images/cats/1/1.jpg'),
     return (
       <div className={stCard.cards__card}>
         <div className={stCard.card__images}>
+          {/* <img src={img.link} alt={this.props.description} /> */}
           <img src={link} alt={this.props.description} />
         </div>
         <div className={stCard.card__text}>
