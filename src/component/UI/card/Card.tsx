@@ -1,6 +1,5 @@
 import React from 'react';
 import stCard from './../card/card.module.css';
-// import * as img from './../../../assets/data/catImages';
 
 export interface CardCatProps {
   id: number;

@@ -1,4 +1,5 @@
 import { CardCatProps } from './../../component/UI/card/Card';
+import * as img from './../../assets/data/catImages';
 
 const catsData: Array<CardCatProps> = [
   {
@@ -16,7 +17,7 @@ const catsData: Array<CardCatProps> = [
     counts: 11,
     description: `Ласковый и игривый, умный и красивый. Любит играть, спать и кушать. Тянуться к человеку, очень
     любознателен. Будет всегда рядом, хороший помощник и верный друг.`,
-    image: '/assets/images/cats/1/1.jpg',
+    image: img.image1,
   },
   {
     id: 2,
@@ -33,7 +34,7 @@ const catsData: Array<CardCatProps> = [
     counts: 4,
     description: `По природе – чуть щеночек и чуть маленький котик, маленькая обезьянка и маленький ребёнок.
     Утративший агрессию, любящий, нежный и общительный.`,
-    image: '/assets/images/cats/2/1.jpg',
+    image: img.image2,
   },
   {
     id: 3,
@@ -65,7 +66,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 9,
     description: `Хорош собой! Отвечает всем породним данным мейн-кунов. Хорошая шуба, много серебра, отличный профиль. Глаза уже зеленые. По характеру мягче и спокойней. Малыш хорош для выставочной карьеры! Игрив и ласков.`,
-    image: './src/assets/images/cats/4/1.png',
+    image: '/src/assets/images/cats/4/1.png',
   },
   {
     id: 5,
@@ -81,7 +82,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: `Мягкая и густая шуба, зеленые глаза и нежный характер, Спокоен и ласков. Вот красавчик будет.`,
-    image: './src/assets/images/cats/5/1.png',
+    image: '/src/assets/images/cats/5/1.png',
   },
   {
     id: 6,
@@ -97,7 +98,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: `Очень милая и ласковая. Любит сидеть на руках и мурлыкать. Очень красивая, обладательница шикарной светлой шубки. Зеленоглазая красавица, ждёт встречи с хозяином.`,
-    image: './src/assets/images/cats/6/1.png',
+    image: '/src/assets/images/cats/6/1.png',
   },
   {
     id: 7,
