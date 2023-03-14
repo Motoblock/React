@@ -50,7 +50,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'DonLeon',
     counts: 3,
     description: `Любит играть и лазать по вершинам, бесстрашный. Шикарная мраморная шуба, зеленые глаза и преданность, не оставит Вас равнодушным.`,
-    image: '/src/assets/images/cats/3/1.jpg',
+    image: img.image3,
   },
   {
     id: 4,
@@ -66,7 +66,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 9,
     description: `Хорош собой! Отвечает всем породним данным мейн-кунов. Хорошая шуба, много серебра, отличный профиль. Глаза уже зеленые. По характеру мягче и спокойней. Малыш хорош для выставочной карьеры! Игрив и ласков.`,
-    image: '/src/assets/images/cats/4/1.png',
+    image: img.image4,
   },
   {
     id: 5,
@@ -82,7 +82,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: `Мягкая и густая шуба, зеленые глаза и нежный характер, Спокоен и ласков. Вот красавчик будет.`,
-    image: '/src/assets/images/cats/5/1.png',
+    image: img.image5,
   },
   {
     id: 6,
@@ -98,7 +98,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: `Очень милая и ласковая. Любит сидеть на руках и мурлыкать. Очень красивая, обладательница шикарной светлой шубки. Зеленоглазая красавица, ждёт встречи с хозяином.`,
-    image: '/src/assets/images/cats/6/1.png',
+    image: img.image6,
   },
   {
     id: 7,
@@ -114,7 +114,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: 'Изящная и очаровталеьная киса. Милая нежная, ласковая и мурлыкающая постоянно.',
-    image: './src/assets/images/cats/7/1.png',
+    image: img.image7,
   },
   {
     id: 8,
@@ -130,7 +130,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: `Девочка, которая проникнет в сердце любому! Очень утонченная. Имеем густую и короткую, серебряную шерсть. Глаза — это два зеленых озера. Хвост длинный. По характеру — умна, красива, хитрюга и подлиза … Везде она первая, самая сообразительная в помете. Допрыгает и достанет всё о чем пожелает.`,
-    image: './src/assets/images/cats/8/1.png',
+    image: img.image8,
   },
   {
     id: 9,
@@ -146,7 +146,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Sunrise',
     counts: 11,
     description: `Малыш для выставочной карьеры. Ровный профиль, шуба шикарная: короткая и густая, серебряная. Спокойный по характеру, умен. Игрив. Осторожен.`,
-    image: './src/assets/images/cats/9/1.png',
+    image: img.image9,
   },
   {
     id: 10,
@@ -162,7 +162,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Sunrise',
     counts: 11,
     description: `Добрый, игривый, окрас - огонь! Глаза в которых можно утонуть, уши с кисточками, будет любимым членом семьи!`,
-    image: './src/assets/images/cats/10/1.jpg',
+    image: img.image10,
   },
   {
     id: 11,
@@ -178,7 +178,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: `Котик очень нежный и игривый, он очень любит играть с игрушками, если найдёт попрыгунчик или маленький мячик, то играть будет долго.`,
-    image: './src/assets/images/cats/11/1.jpg',
+    image: img.image11,
   },
   {
     id: 12,
@@ -194,7 +194,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Liebecoon',
     counts: 8,
     description: `Большие уши, ровный профиль. Обладатель шикарной шубы с густым под шерстком. Глаза большие и голубые, иногда грустные.`,
-    image: './src/assets/images/cats/12/1.png',
+    image: img.image12,
   },
   {
     id: 13,
@@ -210,7 +210,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Sunrise',
     counts: 13,
     description: `Будет большой с красивой породной головой, правильными кунскими глазами, большими кистями, отличной шерстью.`,
-    image: './src/assets/images/cats/13/1.png',
+    image: img.image13,
   },
   {
     id: 14,
@@ -226,7 +226,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Sunrise',
     counts: 11,
     description: `Очень умён и ласков, заглядывает в глаза, а смотрит в душу. Выбрав Бежика, не ошибётесь, друг на веки.`,
-    image: './src/assets/images/cats/14/1.png',
+    image: img.image14,
   },
   {
     id: 15,
@@ -242,7 +242,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Blossom Paradise',
     counts: 1,
     description: `Прехорошенький котенок ищет дом. Джун - ловкий скалолаз! Вытворяющий при этом забавные трюки.`,
-    image: './src/assets/images/cats/15/1.jpg',
+    image: img.image15,
   },
   {
     id: 16,
@@ -258,7 +258,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Blossom Paradise',
     counts: 1,
     description: `Шикарная красавица, обладательница роскошной шубки и невероятно выразительных глаз.`,
-    image: './src/assets/images/cats/16/01.jpg',
+    image: img.image16,
   },
   {
     id: 17,
@@ -274,7 +274,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Legocat',
     counts: 7,
     description: `Котенок живописного, фантастического окраса ищет дом.`,
-    image: './src/assets/images/cats/17/1.jpg',
+    image: img.image17,
   },
   {
     id: 18,
@@ -290,7 +290,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Helios',
     counts: 6,
     description: `Ласковая, игривая девочка. Очень любит сидеть на руках и мурлыкать, ждет ваши добрые надежные руки.`,
-    image: './src/assets/images/cats/18/1.jpg',
+    image: img.image18,
   },
   {
     id: 19,
@@ -306,7 +306,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Helios',
     counts: 6,
     description: `Спокойный и ласковый малыш.`,
-    image: './src/assets/images/cats/19/1.jpg',
+    image: img.image19,
   },
   {
     id: 20,
@@ -322,7 +322,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Helios',
     counts: 6,
     description: `Милый, ласковый, игривый. Забияка и задира с братьями и сестрами. Если что-то надо, залезет на плечи и добьется своего.`,
-    image: './src/assets/images/cats/20/1.jpg',
+    image: img.image20,
   },
   {
     id: 21,
@@ -338,7 +338,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Fluffy Company',
     counts: 4,
     description: `Очень наблюдательная, активная и добрая девочка-мурчит, как трактор.`,
-    image: './src/assets/images/cats/21/1.jpg',
+    image: img.image21,
   },
   {
     id: 22,
@@ -354,7 +354,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Sunrise',
     counts: 11,
     description: `Роскошная мурчалка, умная и безумно ласковая.`,
-    image: './src/assets/images/cats/22/1.jpg',
+    image: img.image22,
   },
   {
     id: 23,
@@ -371,7 +371,7 @@ const catsData: Array<CardCatProps> = [
     counts: 12,
     description:
       'Настоящая бегающая любовь и радость. Если взять на руки, сразу начинает мурлыкать.',
-    image: './src/assets/images/cats/23/1.jpg',
+    image: img.image23,
   },
   {
     id: 24,
@@ -387,7 +387,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Tany Mur',
     counts: 13,
     description: `Ласковый невероятно красивого окраса мальчик ищет добрый дом. Ходит в лоток, дома ничего не портит.`,
-    image: './src/assets/images/cats/24/1.jpg',
+    image: img.image24,
   },
   {
     id: 25,
@@ -403,7 +403,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Gramelissa',
     counts: 5,
     description: `Вам нужен котик для души, элегантный, разговорчивый, тактичный, очень чистоплотный, любящий обнимашки и целовашки? Это он!`,
-    image: './src/assets/images/cats/25/1.jpg',
+    image: img.image25,
   },
   {
     id: 26,
@@ -419,7 +419,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Gramelissa',
     counts: 5,
     description: 'Девочка-подросток, очень активна, непоседа.',
-    image: './src/assets/images/cats/26/1.jpg',
+    image: img.image26,
   },
   {
     id: 27,
@@ -435,7 +435,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Gramelissa',
     counts: 5,
     description: `Коммуникабельный, жизнерадостный, ласковый, абсолютно не агрессивный. Не боится воды, играет в мячики как футболист.`,
-    image: './src/assets/images/cats/27/1.jpg',
+    image: img.image27,
   },
   {
     id: 28,
@@ -451,7 +451,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Gramelissa',
     counts: 5,
     description: 'Характер покладистый. Отлично ладит с кошачьими.',
-    image: './src/assets/images/cats/28/1.jpg',
+    image: img.image28,
   },
   {
     id: 29,
@@ -467,7 +467,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Gramelissa',
     counts: 5,
     description: 'Умный, ласковый, игривый, знает лоток и когтеточку.',
-    image: './src/assets/images/cats/29/1.jpg',
+    image: img.image29,
   },
   {
     id: 30,
@@ -483,7 +483,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Gramelissa',
     counts: 5,
     description: `Спокоен,не навязчив,игрив,не очень разговорчив,но ориентирован на человека. Ладит с детьми. Не кастрирован(пока).`,
-    image: './src/assets/images/cats/30/1.jpg',
+    image: img.image30,
   },
   {
     id: 31,
@@ -499,7 +499,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Nabisben',
     counts: 9,
     description: `Милая, ласковая, игривая девочку. Очень любит сидеть на руках и мурлыкать, ждет ваши добрые надежные руки.`,
-    image: './src/assets/images/cats/31/1.jpg',
+    image: img.image31,
   },
   {
     id: 32,
@@ -515,7 +515,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Nabisben',
     counts: 9,
     description: `Обладает потрясающей блестящей шубкой. Кошечка не липнет к рукам, но ласку очень любит. Обнимает лапками за шею и сразу мурчит. Игривая, красивая - настоящая кошь. Обязательно принесет радость и уют в дом.`,
-    image: './src/assets/images/cats/32/1.jpg',
+    image: img.image32,
   },
   {
     id: 33,
@@ -531,7 +531,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Nabisben',
     counts: 9,
     description: `Ходит в лоточек с наполнителем, очень любит влажный корм, внимание и почесушки. Игрунья, но также немного осторожна, ей нужно время, чтобы привыкнуть к новому дому.`,
-    image: './src/assets/images/cats/33/1.jpg',
+    image: img.image33,
   },
   {
     id: 34,
@@ -547,7 +547,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Nabisben',
     counts: 9,
     description: `Очень игривый, любопытный и смышленый. Даёт лапку, как собачка. Внешне и по характеру похожа на оцикета. В лоток ходит без промахов. Знает когтеточку. Желательно единственным питомцем или с котёнком-подростком, компаньоном для активных игр.`,
-    image: './src/assets/images/cats/34/1.jpg',
+    image: img.image34,
   },
   {
     id: 35,
@@ -563,7 +563,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: 'В активном поиске любящих хозяев короткошерстный ласковый плюшевый британец.',
-    image: './src/assets/images/cats/35/1.jpg',
+    image: img.image35,
   },
   {
     id: 36,
@@ -579,7 +579,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: `Здоров, привит, кастрирован, никогда не промахивается мимо лотка и вообще, парень воспитанный и деликатный.`,
-    image: './src/assets/images/cats/36/1.jpg',
+    image: img.image36,
   },
   {
     id: 37,
@@ -595,7 +595,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: 'Очень хороший, спокойный котик. К лотку приучен.',
-    image: './src/assets/images/cats/37/1.jpg',
+    image: img.image37,
   },
   {
     id: 38,
@@ -611,7 +611,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: `Бархатный подросток-малыш отличного породного достоинства, хорош для выставки и в разведение.`,
-    image: './src/assets/images/cats/38/1.jpg',
+    image: img.image38,
   },
   {
     id: 39,
@@ -627,7 +627,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: 'Любит дeтeй. Maльчик хаpактepный своеобразный, но добрый и ласковый.',
-    image: './src/assets/images/cats/39/1.jpg',
+    image: img.image39,
   },
   {
     id: 40,
@@ -643,7 +643,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: `Родители титулованные (гранд интер чемпион и интер чемпион), имеются все ПЦР тесты. Котенок в новый дом переедет привитым, чипированным, с родословной и ветпаспортом. К лотку и когтеточке приучена.`,
-    image: './src/assets/images/cats/40/1.jpg',
+    image: img.image40,
   },
   {
     id: 41,
@@ -659,7 +659,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: `Милый котик-подросток ждет хозяина. Лоток знает. Характер ласковый. Черный, глаза желтые.`,
-    image: './src/assets/images/cats/41/1.jpg',
+    image: img.image41,
   },
   {
     id: 42,
@@ -675,7 +675,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: `Очень оригинальная, забавная и обязательно принесет капельку счастья и уюта в дом. Очень харизматичная кошечка. За ней интересно наблюдать — она всегда такая разная!`,
-    image: './src/assets/images/cats/42/1.jpg',
+    image: img.image42,
   },
   {
     id: 43,
@@ -691,7 +691,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: `Умный, ОЧЕНЬ добрый, благородный, чистоплотный, интеллигентный, спокойный, рассудительный и воспитанный котик.`,
-    image: './src/assets/images/cats/43/1.jpg',
+    image: img.image43,
   },
   {
     id: 44,
@@ -707,7 +707,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Compliment',
     counts: 2,
     description: `Очень ласковый, игривый, мурчащий компаньон. Кушает все, когтеточкой и лотком пользуется уверенно. Вырастет в шикарного кота.`,
-    image: './src/assets/images/cats/44/1.jpg',
+    image: img.image44,
   },
   {
     id: 45,
@@ -723,7 +723,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Noble Birth',
     counts: 1,
     description: 'Более ласкового, доверчивого и мурчательного котика вы никогда не встречали!!!',
-    image: './src/assets/images/cats/45/1.jpg',
+    image: img.image45,
   },
   {
     id: 46,
@@ -739,7 +739,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Noble Birth',
     counts: 2,
     description: `Пушистая красавица с потрясающими зелёными глазами и прекрасным характером. Котик игривый и ласковый, обожает игрушки с перышками и мышек, но всем игрушкам предпочтет обнимашки с любимым хозяином.`,
-    image: './src/assets/images/cats/46/1.jpg',
+    image: img.image46,
   },
   {
     id: 47,
@@ -755,7 +755,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Noble Birth',
     counts: 2,
     description: `К другим животным дружелюбен и идёт на контакт, не проявляет агрессию даже в самых стрессовых ситуациях. Нет проблем с приемами у ветеринара, поладит с детьми и т. д. Пристраивается единственным котиком в семью. Без самовыгула.`,
-    image: './src/assets/images/cats/47/1.jpg',
+    image: img.image47,
   },
   {
     id: 48,
@@ -771,7 +771,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Sunrise',
     counts: 11,
     description: 'полосатый',
-    image: './src/assets/images/cats/48/1.jpg',
+    image: img.image48,
   },
   {
     id: 49,
@@ -787,7 +787,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Helios',
     counts: 6,
     description: `Здорова, стерилизована и привита. А уж какая красавица – оцените сами! Добрая, игривая, любит погонять игрушечных мышек и половить кошачью удочку). С другими кошками хорошо себя ведет, не ругается и не дерется. Может быть второй кошечкой в семье. Лада самодостаточная и не навязчивая, с характером истинной кошки. Захочет – придет обниматься-гладиться, а нет настроения – то и не приставайте). Умна, хорошо считывает все интонации человека и если ей спокойно, то доверяет, и это очень трогательно. Любит, когда с ней обращаются ласково и максимально нежно. Квартирная жительница, к лоточку и когтеточке приучена.`,
-    image: './src/assets/images/cats/49/1.jpg',
+    image: img.image49,
   },
   {
     id: 50,
@@ -803,7 +803,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'Helios',
     counts: 6,
     description: `Безумно ласковый черный котик ищет дом. У него очень красивая мордочка и шерстка гладкая как шелк.`,
-    image: './src/assets/images/cats/50/1.jpg',
+    image: img.image50,
   },
 ];
 
