@@ -16,7 +16,7 @@ const catsData: Array<CardCatProps> = [
     counts: 11,
     description: `Ласковый и игривый, умный и красивый. Любит играть, спать и кушать. Тянуться к человеку, очень
     любознателен. Будет всегда рядом, хороший помощник и верный друг.`,
-    image: './../assets/images/cats/1/1.jpg',
+    image: '/src/assets/images/cats/1/1.jpg',
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const catsData: Array<CardCatProps> = [
     counts: 4,
     description: `По природе – чуть щеночек и чуть маленький котик, маленькая обезьянка и маленький ребёнок.
     Утративший агрессию, любящий, нежный и общительный.`,
-    image: './src/assets/images/cats/2/1.jpg',
+    image: '/src/assets/images/cats/2/1.jpg',
   },
   {
     id: 3,
@@ -49,7 +49,7 @@ const catsData: Array<CardCatProps> = [
     catterys: 'DonLeon',
     counts: 3,
     description: `Любит играть и лазать по вершинам, бесстрашный. Шикарная мраморная шуба, зеленые глаза и преданность, не оставит Вас равнодушным.`,
-    image: './src/assets/images/cats/3/1.jpg',
+    image: '/src/assets/images/cats/3/1.jpg',
   },
   {
     id: 4,
