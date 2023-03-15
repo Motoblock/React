@@ -27,14 +27,14 @@ class Card extends React.Component<CardCatProps, { value: string }> {
     return (
       <div className={stCard.cards__card}>
         <div className={stCard.card__images}>
-          <img src={link} alt={this.props.description} />
+          <img src={link} title={this.props.description} alt={`Кот по кличке ` + this.props.name} />
         </div>
         <div className={stCard.card__text}>
           <div className={stCard.card__age}>{this.props.age} месяцев</div>
           <div className={stCard.card__name}>{this.props.name}</div>
           <div className={stCard.card__breed}>{this.props.breed}</div>
           <div className={stCard.card__cattery}>{this.props.catterys}</div>
-          <div className={stCard.card__price}>{this.props.price}</div>
+          <div className={stCard.card__price}>{this.props.price} ₽</div>
         </div>
       </div>
     );

@@ -30,7 +30,7 @@ class Header extends Component<Props, { title: string }> {
         <div className="header__menu">
           <nav className="nav">
             <NavLink onClick={() => this.setState({ title: 'Home page' })} className="item" to="/">
-              Home
+              Main
             </NavLink>
             <NavLink
               onClick={() => this.setState({ title: 'About page' })}
