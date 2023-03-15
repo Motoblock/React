@@ -8,7 +8,7 @@ class Main extends React.Component {
   render() {
     return (
       <>
-        <h1>Home page</h1>
+        <h2>Paws</h2>
         <MySearch type="text" placeholder="Input some body..." />
         <Cards />
       </>

@@ -49,6 +49,11 @@ html,body{
   padding: 3px 0;
 }
 
+.header__container {
+  display: flex;
+  align-items: center;
+}
+
 .active {
   color: #C8945D;
   cursor: default;

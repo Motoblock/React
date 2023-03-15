@@ -9,7 +9,7 @@ describe('main', () => {
     render(<About />);
     expect(
       screen.getByRole('heading', {
-        level: 1,
+        level: 2,
       })
     ).toHaveTextContent('This About page');
   });
