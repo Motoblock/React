@@ -10,11 +10,6 @@ class Header extends Component<Props, { title: string }> {
     this.state = {
       title: '',
     };
-    // this.namePage = this.namePage.bind(this);
-  }
-
-  namePage(props: { title: string }) {
-    return <h1>{props.title}</h1>;
   }
 
   componentDidMount() {
@@ -25,7 +20,7 @@ class Header extends Component<Props, { title: string }> {
     return (
       <div className="header__container">
         <div className="header__logo">
-          <this.namePage title={this.state.title} />
+          <h1>{this.state.title}</h1>
         </div>
         <div className="header__menu">
           <nav className="nav">
