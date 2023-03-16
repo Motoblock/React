@@ -1,13 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import classes from './../input/MySearch.module.css';
+import SearchProps from './interface';
 
-interface SearchProps {
-  type: string;
-  placeholder: string;
-  value?: string;
-}
-
-class MySearch extends React.Component<SearchProps, { value: string }> {
+class MySearch extends React.Component<object, SearchProps> {
   constructor(props: SearchProps) {
     super(props);
   }
@@ -20,7 +15,7 @@ class MySearch extends React.Component<SearchProps, { value: string }> {
     if (!this.state) return;
 
     const value = this.state.value;
-    localStorage.setItem('searchInput', value);
+    if (value) localStorage.setItem('searchInput', value);
   }
 
   componentDidMount() {
@@ -33,14 +28,16 @@ class MySearch extends React.Component<SearchProps, { value: string }> {
 
   render() {
     return (
-      <input
-        className={classes.search}
-        {...this.props}
-        onChange={(e) => {
-          this.handleChange(e);
-        }}
-        value={this.state ? this.state.value : ''}
-      />
+      <div className="search">
+        <input
+          className={classes.search}
+          {...this.props}
+          onChange={(e) => {
+            this.handleChange(e);
+          }}
+          value={this.state ? this.state.value : ''}
+        />
+      </div>
     );
   }
 }
