@@ -1,5 +1,5 @@
 import React from 'react';
-import stCard from '/component/UI/card/Card.module.css';
+import stCard from './src/component/UI/card/Card.module.css';
 
 export interface ICardCatProps {
   id: number;
