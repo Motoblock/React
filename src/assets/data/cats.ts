@@ -1,7 +1,7 @@
-import { CardCatProps } from './../../component/UI/card/Card';
+import { ICardCatProps } from './../../component/UI/card/Card';
 import * as img from './../../assets/data/catImages';
 
-const catsData: Array<CardCatProps> = [
+const catsData: Array<ICardCatProps> = [
   {
     id: 1,
     breed: 'Абиссинская',
