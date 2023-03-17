@@ -5,19 +5,17 @@ import Header from './Header';
 
 const Layout = () => {
   return (
-    <>
-      <div className="wrapper">
-        <header className="header">
-          <Header />
-        </header>
-        <main className="main">
-          <Outlet />
-        </main>
-        <footer className="footer">
-          <Footer />
-        </footer>
-      </div>
-    </>
+    <div className="wrapper">
+      <header className="header">
+        <Header />
+      </header>
+      <main className="main">
+        <Outlet />
+      </main>
+      <footer className="footer">
+        <Footer />
+      </footer>
+    </div>
   );
 };
 

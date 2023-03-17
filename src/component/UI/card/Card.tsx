@@ -1,7 +1,7 @@
 import React from 'react';
-import stCard from './../card/card.module.css';
+import stCard from './Card.module.css';
 
-export interface CardCatProps {
+export interface ICardCatProps {
   id: number;
   breed: string;
   price: number;
@@ -17,15 +17,11 @@ export interface CardCatProps {
   description: string;
   image: string;
 }
-class Card extends React.Component<CardCatProps, { value: string }> {
-  // constructor(props: CardCatProps) {
-  //   super(props);
-  // }
-
+class Card extends React.Component<ICardCatProps, { value: string }> {
   render() {
     const link = `${this.props.image}`;
     return (
-      <div className={stCard.cards__card}>
+      <div data-testid="card" className={stCard.cards__card}>
         <div className={stCard.card__images}>
           <img src={link} title={this.props.description} alt={`Кот по кличке ` + this.props.name} />
         </div>

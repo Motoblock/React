@@ -11,6 +11,6 @@ describe('main', () => {
       screen.getByRole('heading', {
         level: 2,
       })
-    ).toHaveTextContent('О котиках');
+    ).toHaveTextContent('About');
   });
 });

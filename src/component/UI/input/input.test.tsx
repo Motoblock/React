@@ -6,11 +6,11 @@ import MySearch from '../input/MySearch';
 
 describe('Test Search component', () => {
   const prop: SearchProps = { type: 'search', placeholder: 'Input some body...' };
+  const testValue = 'catcatcat';
   it('renders Search component', () => {
     render(<MySearch {...prop} />);
     expect(screen.getByPlaceholderText(/Input some body.../i)).toBeInTheDocument();
   });
-  const testValue = 'catcatcat';
   it('Renders Search component with data from localStorage', async () => {
     localStorage.setItem('searchInput', testValue);
     render(<MySearch {...prop} />);

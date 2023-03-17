@@ -1,7 +1,7 @@
-interface SearchProps {
+interface ISearchProps {
   type: string;
   placeholder: string;
   value?: string;
 }
 
-export default SearchProps;
+export default ISearchProps;

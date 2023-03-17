@@ -13,9 +13,16 @@ class Header extends Component<Props, { title: string }> {
   }
 
   componentDidMount() {
-    if (location.pathname === '/') this.setState({ title: 'Home page' });
-    if (location.pathname === '/about') this.setState({ title: 'About page' });
+    switch (location.pathname) {
+      case '/':
+        this.setState({ title: 'Main page' });
+        break;
+      case '/about':
+        this.setState({ title: 'About page' });
+        break;
+    }
   }
+
   render() {
     return (
       <div className="header__container">
@@ -24,7 +31,7 @@ class Header extends Component<Props, { title: string }> {
         </div>
         <div className="header__menu">
           <nav className="nav">
-            <NavLink onClick={() => this.setState({ title: 'Home page' })} className="item" to="/">
+            <NavLink onClick={() => this.setState({ title: 'Main page' })} className="item" to="/">
               Main
             </NavLink>
             <NavLink
