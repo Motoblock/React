@@ -20,6 +20,8 @@ class Header extends Component<Props, { title: string }> {
       case '/about':
         this.setState({ title: 'About page' });
         break;
+      default:
+        this.setState({ title: 'page 404' });
     }
   }
 
