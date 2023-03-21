@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchProps from './interface';
-import MySearch from '../input/MySearch';
+import MySearch from './MySearch';
 
 describe('Test Search component', () => {
   const prop: SearchProps = { type: 'search', placeholder: 'Input some body...' };

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-interface Props {
+import logo from './../assets/images/logo.png';
+
+interface IProps {
   [title: string]: string;
 }
 
-class Header extends Component<Props, { title: string }> {
-  constructor(props: Props) {
+class Header extends Component<IProps, { title: string }> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       title: '',
@@ -20,6 +22,11 @@ class Header extends Component<Props, { title: string }> {
       case '/about':
         this.setState({ title: 'About page' });
         break;
+      case '/forms':
+        this.setState({ title: 'Forms page' });
+        break;
+      default:
+        this.setState({ title: 'page 404' });
     }
   }
 
@@ -27,6 +34,7 @@ class Header extends Component<Props, { title: string }> {
     return (
       <div className="header__container">
         <div className="header__logo">
+          <img src={logo} alt="logo" />
           <h1>{this.state.title}</h1>
         </div>
         <div className="header__menu">
@@ -40,6 +48,13 @@ class Header extends Component<Props, { title: string }> {
               to="/about"
             >
               About
+            </NavLink>
+            <NavLink
+              onClick={() => this.setState({ title: 'Forms page' })}
+              className="item"
+              to="/forms"
+            >
+              Forms
             </NavLink>
           </nav>
         </div>

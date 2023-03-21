@@ -1,9 +1,9 @@
 import React, { ChangeEvent } from 'react';
-import classes from './MySearch.module.css';
-import ISearchProps from './interface';
+import classes from './Input.module.css';
+import IInputProps from './interface';
 
-class MySearch extends React.Component<object, ISearchProps> {
-  constructor(props: ISearchProps) {
+class MySearch extends React.Component<object, IInputProps> {
+  constructor(props: IInputProps) {
     super(props);
   }
 

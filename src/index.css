@@ -14,7 +14,7 @@
 a:focus,a:active{outline: none;}
 header,nav,main,footer,section,aside{display: block;}
 
-html,body{
+html, body{
   height: 100%;
   width: 100%;
   line-height: 1;
@@ -37,6 +37,7 @@ html,body{
   min-height: 100%;
   overflow: hidden;
   position: relative;
+  margin: 5px;
 }
 .header {
   width: 100%;
@@ -54,8 +55,13 @@ html,body{
   align-items: center;
 }
 
-.active {
+.item {
   color: #C8945D;
+  font-weight: 500;
+}
+
+.active {
+  color: #ff9a1c;
   cursor: default;
 }
 .nav {
@@ -66,10 +72,11 @@ html,body{
 .nav .item  {
   margin: 10px;
   text-decoration: none;
+  font-size: 34px;
 }
 
 .nav .item:hover {
-  color: #C8945D;
+  color: #ff9a1c;
 }
 .main {
   width: 100%;
