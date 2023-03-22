@@ -5,9 +5,10 @@
   border: 1px solid rgb(200, 148, 93);
 }
 
-.formFio {
+.formInput {
   width: 100%;
-  margin: 15px 0px;
+  margin: 2px 0px 15px 0;
   padding: 10px;
   border: 1px solid rgb(200, 148, 93);
+  font-size: 18px;
 }

@@ -14,8 +14,8 @@ class MySearch extends React.Component<object, IInputProps> {
   componentWillUnmount() {
     if (!this.state) return;
 
-    const value = this.state.value;
-    if (value) localStorage.setItem('searchInput', value);
+    const value = this.state.value || '';
+    localStorage.setItem('searchInput', value);
   }
 
   componentDidMount() {

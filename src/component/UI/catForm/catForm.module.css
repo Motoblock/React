@@ -5,19 +5,6 @@
   font-weight: 600;
   color: #C8945D;
 }
-.formInput {
-  width: 100%;
-  margin: 2px 0px 15px 0;
-  padding: 10px;
-  border: 1px solid rgb(200, 148, 93);
-  font-size: 18px;
-}
-
-.formSelect {
-  font-size: 16px;
-  border: 1px solid rgb(200, 148, 93);
-  margin: 10px;
-}
 
 .formUl {
   list-style-type: none;
