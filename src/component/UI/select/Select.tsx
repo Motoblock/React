@@ -1,19 +1,26 @@
 import React from 'react';
 import classes from './Select.module.css';
-import { breedsData } from '../../../assets/data/breeds';
+// import { breedsData } from '../../../assets/data/breeds';
 
-export const Select = React.forwardRef<HTMLSelectElement>((props, ref) => {
-  console.log(props.name);
+interface ISelect {
+  nameType: string;
+  data: string[];
+}
+
+export const Select = React.forwardRef<HTMLSelectElement, ISelect>((props, ref) => {
+  console.log('props', props);
   return (
     <>
-      <select ref={ref} className={classes.formSelect} name={props.name}>
+      <select ref={ref} className={classes.formSelect} name={props.nameType}>
         <option value={''} key={0}>
           ...
         </option>
 
-        {breedsData.map((item) => {
+        {props.data.map((item, index) => {
+          // console.log('item', item);
+          // console.log('index', index);
           return (
-            <option key={item.breed} value={item.name}>
+            <option key={index} value={item.name}>
               {item.name}
             </option>
           );

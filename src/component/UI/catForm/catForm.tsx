@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 import { Button } from '../button/Button';
 import { Input } from '../input/Input';
 import { Select } from '../select/Select';
-import { catterysData } from './../../../assets/data/catterys';
+
 import classForm from './catForm.module.css';
 import { propsInput, propsSelect } from './types';
 
@@ -16,7 +16,8 @@ export class CatForm extends React.Component {
   name: React.RefObject<HTMLInputElement>;
   age: React.RefObject<HTMLInputElement>;
   breed: React.RefObject<HTMLSelectElement>;
-  sex: React.RefObject<HTMLInputElement>;
+  sex0: React.RefObject<HTMLInputElement>;
+  sex1: React.RefObject<HTMLInputElement>;
   catterys: React.RefObject<HTMLInputElement>;
   price: React.RefObject<HTMLInputElement>;
   image: React.RefObject<HTMLInputElement>;
@@ -33,7 +34,8 @@ export class CatForm extends React.Component {
     this.name = React.createRef();
     this.age = React.createRef();
     this.breed = React.createRef();
-    this.sex = React.createRef();
+    this.sex0 = React.createRef();
+    this.sex1 = React.createRef();
     this.catterys = React.createRef();
     this.price = React.createRef();
     this.image = React.createRef();
@@ -56,12 +58,15 @@ export class CatForm extends React.Component {
 
     const age = this.datediff(new Date(this.age.current!.value), new Date());
     console.log('checked', this.catterys.current?.checked);
+    let sex = 0;
+    if (this.sex0.current!.checked === true) sex = 0;
+    if (this.sex1.current!.checked === true) sex = 1;
     const newCard: ICardCatProps = {
       id: this.state.cards.length,
       name: this.name.current!.value,
       age: age,
       breed: this.breed.current!.value,
-      sex: Number(this.sex.current!.value),
+      sex: sex,
       price: Number(this.price.current!.value),
       image: images,
       counts: Number(this.counts.current!.value),
@@ -88,33 +93,35 @@ export class CatForm extends React.Component {
           <Input ref={this.age} {...propsInput[1]} />
           <label className={classForm.label}>Sex </label>
           <label>
-            Mail <input ref={this.sex} name="sex" type="radio" value={0} />
+            Male <input ref={this.sex0} name="sex" type="radio" value={0} />
           </label>
           <label>
-            Woman <input ref={this.sex} name="sex" type="radio" value={1} />
+            Female <input ref={this.sex1} name="sex" type="radio" value={1} />
           </label>
           <br></br>
           <label className={classForm.label}>Breeds</label>
           <Select ref={this.breed} {...propsSelect[0]} />
           <br></br>
           <label className={classForm.label}>Catterys</label>
+          <Select ref={this.catterys} {...propsSelect[1]} />
           {
-            <ul className={classForm.formUl}>
-              {catterysData.map((item) => {
-                return (
-                  <li key={item.cattery}>
-                    <input
-                      ref={this.catterys}
-                      name={`catterys[${item.cattery}]`}
-                      type="radio"
-                      value={item.nameT}
-                    />
-                    &nbsp;{item.nameT}
-                  </li>
-                );
-              })}
-            </ul>
+            // <ul className={classForm.formUl}>
+            //   {catterysData.map((item) => {
+            //     return (
+            //       <li key={item.cattery}>
+            //         <input
+            //           ref={this.catterys}
+            //           name={`catterys[${item.cattery}]`}
+            //           type="radio"
+            //           value={item.nameT}
+            //         />
+            //         &nbsp;{item.nameT}
+            //       </li>
+            //     );
+            //   })}
+            // </ul>
           }
+          <br></br>
           <label className={classForm.label}>Price </label>
           <Input ref={this.price} {...propsInput[2]} />
           <label className={classForm.label}>Photo of cats </label>

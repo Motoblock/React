@@ -1,59 +1,59 @@
 interface ICatterysData {
   cattery: number;
-  nameT: string;
+  name: string;
 }
 
 export const catterysData: Array<ICatterysData> = [
   {
     cattery: 1,
-    nameT: 'Blossom Paradise',
+    name: 'Blossom Paradise',
   },
   {
     cattery: 2,
-    nameT: 'Compliment',
+    name: 'Compliment',
   },
   {
     cattery: 3,
-    nameT: 'DonLeon',
+    name: 'DonLeon',
   },
   {
     cattery: 4,
-    nameT: 'Fluffy Company',
+    name: 'Fluffy Company',
   },
   {
     cattery: 5,
-    nameT: 'Gramelissa',
+    name: 'Gramelissa',
   },
   {
     cattery: 6,
-    nameT: 'Helios',
+    name: 'Helios',
   },
   {
     cattery: 7,
-    nameT: 'Legocat',
+    name: 'Legocat',
   },
   {
     cattery: 8,
-    nameT: 'Liebecoon',
+    name: 'Liebecoon',
   },
   {
     cattery: 9,
-    nameT: 'Nabisben',
+    name: 'Nabisben',
   },
   {
     cattery: 10,
-    nameT: 'Noble Birth',
+    name: 'Noble Birth',
   },
   {
     cattery: 11,
-    nameT: 'Sunrise',
+    name: 'Sunrise',
   },
   {
     cattery: 12,
-    nameT: 'Sharavi',
+    name: 'Sharavi',
   },
   {
     cattery: 13,
-    nameT: 'Tany Mur',
+    name: 'Tany Mur',
   },
 ];

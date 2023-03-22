@@ -1,3 +1,6 @@
+import { breedsData, IBreedsData } from '../../../assets/data/breeds';
+import { catterysData } from './../../../assets/data/catterys';
+
 export const propsInput = [
   {
     name: 'name',
@@ -21,14 +24,18 @@ export const propsInput = [
   },
 ];
 
+// interface ISelect {
+//   name: string;
+//   data: IBreedsData[];
+// }
+
 export const propsSelect = [
   {
-    name: 'breed',
-    data: 'breedsData',
+    nameType: 'breed',
+    data: breedsData,
   },
   {
-    name: 'age',
-    type: 'date',
-    max: Date(),
+    nameType: 'cattery',
+    data: catterysData,
   },
 ];
