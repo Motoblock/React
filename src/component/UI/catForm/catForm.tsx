@@ -14,6 +14,11 @@ interface IFormStateType {
     name: string;
     age: string;
     price: string;
+    sex: string;
+    breed: string;
+    cattery: string;
+    image: string;
+    counts: string;
   };
 }
 export class CatForm extends React.Component {
@@ -28,6 +33,9 @@ export class CatForm extends React.Component {
   counts: React.RefObject<HTMLInputElement>;
   forms: React.RefObject<HTMLFormElement>;
   state: IFormStateType;
+  sex: number;
+  month: number;
+  imageLink: string;
 
   constructor(props: IFormStateType) {
     super(props);
@@ -37,13 +45,20 @@ export class CatForm extends React.Component {
         name: '',
         age: '',
         price: '',
+        sex: '',
+        breed: '',
+        cattery: '',
+        image: '',
+        counts: '',
       },
       cards: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.name = React.createRef();
+    this.month = 0;
     this.age = React.createRef();
     this.breed = React.createRef();
+    this.sex = -1;
     this.sex0 = React.createRef();
     this.sex1 = React.createRef();
     this.catterys = React.createRef();
@@ -51,57 +66,139 @@ export class CatForm extends React.Component {
     this.image = React.createRef();
     this.counts = React.createRef();
     this.forms = React.createRef();
+    this.imageLink = '';
   }
 
-  datediff(first: Date, second: Date) {
+  private datediff(first: Date, second: Date) {
     return Math.trunc((Number(second) - Number(first)) / (1000 * 60 * 60 * 24 * 30));
   }
 
-  validateName(el: RefObject<HTMLInputElement>) {
+  private saveState(error: string, field: string) {
+    const mesAdd = this.state.messages;
+    if ('name' === field) mesAdd.name = error;
+    if ('price' === field) mesAdd.price = error;
+    if ('age' === field) mesAdd.age = error;
+    if ('sex' === field) mesAdd.sex = error;
+    if ('breed' === field) mesAdd.breed = error;
+    if ('cattery' === field) mesAdd.cattery = error;
+    if ('image' === field) mesAdd.image = error;
+    if ('counts' === field) mesAdd.counts = error;
+
+    this.setState({ messages: mesAdd });
+  }
+
+  private validateName(el: RefObject<HTMLInputElement>) {
     const value = el.current?.value;
-    console.log(value);
-    console.log(this.state.messages);
     if (!value) {
       this.saveState(`${messagesErrors[0].name?.nameValue}`, 'name');
-      // this.setState({ messages: { name: messagesErrors[0].name?.nameValue } });
       return false;
     }
     // value.match(/[!/^\d*(?:\.\d{0,2})?$/]/) &&
     if (!(value.length > 1) || !(value.length < 30)) {
-      this.setState({ messages: { name: messagesErrors[0].name?.nameSize } });
+      this.saveState(`${messagesErrors[0].name?.nameSize}`, 'name');
       return false;
     }
     const character = value.charAt(0);
     if (character !== character.toUpperCase()) {
-      this.setState({ messages: { name: messagesErrors[0].name?.nameUpper } });
+      this.saveState(`${messagesErrors[0].name?.nameUpper}`, 'name');
       return false;
     }
+    this.saveState('', 'name');
     return true;
   }
 
-  saveState(error: string, field: string) {
-    const mesAdd = this.state.messages;
-    if ('name' === field) mesAdd.name = error;
-    if ('price' === field) mesAdd.price = error;
-    this.setState({ messages: mesAdd });
+  private validatePrice(el: RefObject<HTMLInputElement>) {
+    const value = el.current?.value;
+    if (Number(value) === 0) {
+      this.saveState(`${messagesErrors[2].price?.priceValue}`, 'price');
+      return false;
+    }
+    if (value && Number(value) > 1000000) {
+      this.saveState(`${messagesErrors[2].price?.priceMax}`, 'price');
+      return false;
+    }
+    this.saveState('', 'price');
+    return true;
   }
 
-  validatePrice(el: RefObject<HTMLInputElement>) {
+  private validateSex() {
+    if (this.sex0.current!.checked === true) this.sex = 0;
+    if (this.sex1.current!.checked === true) this.sex = 1;
+    if (this.sex === -1) {
+      this.saveState(`${messagesErrors[3].sex?.sexValue}`, 'sex');
+      return false;
+    }
+    this.saveState('', 'sex');
+    return true;
+  }
+
+  private validateBreeds(el: RefObject<HTMLSelectElement>) {
     const value = el.current?.value;
-    console.log(value);
-    if (value && Number(value) > 0) return true;
-    this.saveState(`${messagesErrors[2].price?.priceValue}`, 'price');
+    if (value === '') {
+      this.saveState(`${messagesErrors[4].breed?.breedValue}`, 'breed');
+      return false;
+    }
+    this.saveState('', 'breed');
+    return true;
+  }
+
+  private validateCatterys(el: RefObject<HTMLSelectElement>) {
+    const value = el.current?.value;
+    if (value === '') {
+      this.saveState(`${messagesErrors[5].cattery?.catteryValue}`, 'cattery');
+      return false;
+    }
+    this.saveState('', 'cattery');
+    return true;
+  }
+
+  private validateAge() {
+    if (!this.age.current!.value) {
+      this.saveState(`${messagesErrors[1].age?.ageValue}`, 'age');
+      return false;
+    }
+    this.month = this.datediff(new Date(this.age.current!.value), new Date());
+    if (this.month === 0) {
+      this.saveState(`${messagesErrors[1].age?.ageSmall}`, 'age');
+      return false;
+    }
+    this.saveState('', 'age');
+    return true;
+  }
+  private validateImage(el: RefObject<HTMLInputElement>) {
+    if (el.current?.files && el.current?.files?.length !== 0) {
+      const filesRef = el.current?.files;
+      console.log(filesRef[0].type.includes('image'));
+      const selecteds = [...[...filesRef]];
+      selecteds.forEach((i) => (this.imageLink = URL.createObjectURL(i)));
+
+      this.saveState('', 'image');
+      return true;
+    }
+    this.saveState(`${messagesErrors[6].image?.imageValue}`, 'image');
     return false;
   }
-  validateForm() {
+  private validateOwner() {
+    if (this.counts.current!.checked === false) {
+      this.saveState(`${messagesErrors[7].counts?.countsValue}`, 'counts');
+      return false;
+    }
+    this.saveState('', 'counts');
+    return true;
+  }
+
+  private validateForm() {
     const field: boolean[] = [];
 
     field.push(this.validateName(this.name));
     field.push(this.validatePrice(this.price));
-    // field.push(this.validateName(this.breed));
-    // field.push(this.validateAge());
+    field.push(this.validateBreeds(this.breed));
+    field.push(this.validateCatterys(this.catterys));
+    field.push(this.validateAge());
+    field.push(this.validateSex());
+    field.push(this.validateImage(this.image));
+    field.push(this.validateOwner());
 
-    console.log('field', field);
     return !field.includes(false);
   }
 
@@ -110,36 +207,19 @@ export class CatForm extends React.Component {
 
     if (this.validateForm()) {
       this.setState({ confirm: true });
-      setTimeout(() => this.setState({ confirm: false }), 5000);
+      setTimeout(() => this.setState({ confirm: false }), 4000);
 
-      let images = '';
-      if (this.image.current?.files) {
-        const filesRef = this.image.current?.files;
-        const selecteds = [...[...filesRef]];
-        selecteds.forEach((i) => (images = URL.createObjectURL(i)));
-      }
-
-      const age = this.datediff(new Date(this.age.current!.value), new Date());
-      // console.log('checked', this.catterys.current?.checked);
-      let sex = 0;
-      this.name.current?.classList.add();
-      if (this.sex0.current!.checked === true) sex = 0;
-      if (this.sex1.current!.checked === true) sex = 1;
       const newCard: ICardCatProps = {
         id: this.state.cards.length,
         name: this.name.current!.value,
-        age: age,
+        age: this.month,
         breed: this.breed.current!.value,
-        sex: sex,
+        sex: this.sex,
         price: Number(this.price.current!.value),
-        image: images,
+        image: this.imageLink,
         counts: Number(this.counts.current!.value),
         catterys: this.catterys.current!.value,
-        description: '',
       };
-
-      console.log('state', this.state.cards);
-      console.log('newCard', newCard);
 
       const cardsAdd = [...this.state.cards];
       cardsAdd.push(newCard);
@@ -151,7 +231,6 @@ export class CatForm extends React.Component {
   }
 
   render() {
-    console.log(this.state.messages);
     return (
       <>
         {this.state.confirm && <p className={classForm.allRight}>All right</p>}
@@ -166,31 +245,48 @@ export class CatForm extends React.Component {
           </span>
           <Input ref={this.name} {...propsInput[0]} />
           <label className={classForm.label}>Date of birth</label>
+          <span key={6} className={classForm.error}>
+            {this.state.messages?.age}
+          </span>
           <Input ref={this.age} {...propsInput[1]} />
-          <label className={classForm.label}>Sex </label>
+          <label className={classForm.label}>Gender </label>
+          <span key={2} className={classForm.error}>
+            {this.state.messages?.sex}
+          </span>
           <label>
             Male <input ref={this.sex0} name="sex" type="radio" value={0} />
           </label>
           <label>
-            Female <input ref={this.sex1} name="sex" type="radio" value={1} />
+            &nbsp;Female <input ref={this.sex1} name="sex" type="radio" value={1} />
           </label>
           <br></br>
           <label className={classForm.label}>Breeds</label>
+          <span key={3} className={classForm.error}>
+            {this.state.messages?.breed}
+          </span>
           <Select ref={this.breed} {...propsSelect[0]} />
           <br></br>
           <label className={classForm.label}>Catterys</label>
+          <span key={4} className={classForm.error}>
+            {this.state.messages?.cattery}
+          </span>
           <Select ref={this.catterys} {...propsSelect[1]} />
           <br></br>
           <label className={classForm.label}>Price </label>
-          <span key={2} className={classForm.error}>
+          <span key={5} className={classForm.error}>
             {this.state.messages?.price}
           </span>
           <Input ref={this.price} {...propsInput[2]} />
           <label className={classForm.label}>Photo of cats </label>
+          <span key={7} className={classForm.error}>
+            {this.state.messages?.image}
+          </span>
           <Input ref={this.image} {...propsInput[3]} />
+          <span key={8} className={classForm.error}>
+            {this.state.messages?.counts}
+          </span>
           <label>
-            <input ref={this.counts} name="counts" type="checkbox" value={1} /> I am the owner of
-            cat
+            <input ref={this.counts} name="counts" type="checkbox" /> I am the owner of cat
           </label>
           <Button>Create card</Button>
         </form>

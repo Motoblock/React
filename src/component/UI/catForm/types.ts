@@ -38,11 +38,16 @@ export const propsSelect = [
 export const messagesErrors = [
   {
     name: {
-      nameValue: 'The field should not be empty',
-      nameUpper: 'The name must begin with a capital letter',
-      nameSize: 'The name must be at least 2 letters and no more than 25',
+      nameValue: ' The field should not be empty',
+      nameUpper: ' The name must begin with a capital letter',
+      nameSize: ' The name must be at least 2 letters and no more than 25',
     },
   },
-  { age: { ageValue: 'error2' } },
-  { price: { priceValue: 'Specify the cost' } },
+  { age: { ageValue: ' Specify the age', ageSmall: ' At least 2 months' } },
+  { price: { priceValue: ' Specify the cost', priceMax: ' The price is too high' } },
+  { sex: { sexValue: ' Specify the gender ' } },
+  { breed: { breedValue: ' Specify the breed' } },
+  { cattery: { catteryValue: ' Specify the cattery' } },
+  { image: { imageValue: ' Specify the breed' } },
+  { counts: { countsValue: ' Only owners can add information ' } },
 ];
