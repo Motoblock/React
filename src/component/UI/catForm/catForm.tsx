@@ -2,12 +2,12 @@ import React, { FormEvent } from 'react';
 import { Button } from '../button/Button';
 import { Input } from '../input/Input';
 import { Select } from '../select/Select';
-
 import classForm from './catForm.module.css';
 import { propsInput, propsSelect } from './types';
-
 import { ICardCatProps } from './../card/types';
 import Card from './../../UI/card/Card';
+// import { breedsData } from '../../../assets/data/breeds';
+// import { catterysData } from './../../../assets/data/catterys';
 interface FormStateType {
   confirm: boolean;
   cards: ICardCatProps[];
@@ -18,7 +18,7 @@ export class CatForm extends React.Component {
   breed: React.RefObject<HTMLSelectElement>;
   sex0: React.RefObject<HTMLInputElement>;
   sex1: React.RefObject<HTMLInputElement>;
-  catterys: React.RefObject<HTMLInputElement>;
+  catterys: React.RefObject<HTMLSelectElement>;
   price: React.RefObject<HTMLInputElement>;
   image: React.RefObject<HTMLInputElement>;
   counts: React.RefObject<HTMLInputElement>;
@@ -57,7 +57,7 @@ export class CatForm extends React.Component {
     }
 
     const age = this.datediff(new Date(this.age.current!.value), new Date());
-    console.log('checked', this.catterys.current?.checked);
+    // console.log('checked', this.catterys.current?.checked);
     let sex = 0;
     if (this.sex0.current!.checked === true) sex = 0;
     if (this.sex1.current!.checked === true) sex = 1;
@@ -100,27 +100,10 @@ export class CatForm extends React.Component {
           </label>
           <br></br>
           <label className={classForm.label}>Breeds</label>
-          <Select ref={this.breed} {...propsSelect[0]} />
+          <Select ref={this.breed} name="breed" {...propsSelect[0]} />
           <br></br>
           <label className={classForm.label}>Catterys</label>
-          <Select ref={this.catterys} {...propsSelect[1]} />
-          {
-            // <ul className={classForm.formUl}>
-            //   {catterysData.map((item) => {
-            //     return (
-            //       <li key={item.cattery}>
-            //         <input
-            //           ref={this.catterys}
-            //           name={`catterys[${item.cattery}]`}
-            //           type="radio"
-            //           value={item.nameT}
-            //         />
-            //         &nbsp;{item.nameT}
-            //       </li>
-            //     );
-            //   })}
-            // </ul>
-          }
+          <Select ref={this.catterys} name="cattery" {...propsSelect[1]} />
           <br></br>
           <label className={classForm.label}>Price </label>
           <Input ref={this.price} {...propsInput[2]} />

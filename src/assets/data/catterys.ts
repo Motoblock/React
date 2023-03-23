@@ -1,4 +1,4 @@
-interface ICatterysData {
+export interface ICatterysData {
   cattery: number;
   name: string;
 }
