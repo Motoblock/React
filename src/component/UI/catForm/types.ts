@@ -24,18 +24,25 @@ export const propsInput = [
   },
 ];
 
-// interface ISelect {
-//   name: string;
-//   data: IBreedsData[];
-// }
-
 export const propsSelect = [
   {
-    nameType: 'breed',
+    name: 'breed',
     data: breedsData,
   },
   {
-    nameType: 'cattery',
+    name: 'cattery',
     data: catterysData,
   },
+];
+
+export const messagesErrors = [
+  {
+    name: {
+      nameValue: 'The field should not be empty',
+      nameUpper: 'The name must begin with a capital letter',
+      nameSize: 'The name must be at least 2 letters and no more than 25',
+    },
+  },
+  { age: { ageValue: 'error2' } },
+  { price: { priceValue: 'Specify the cost' } },
 ];

@@ -31,6 +31,9 @@ html, body{
   margin: 0 auto;
   box-sizing: content-box;
 }
+h1 {
+  font-size: 18px;
+}
 .wrapper {
   display: flex;
   flex-direction: column;

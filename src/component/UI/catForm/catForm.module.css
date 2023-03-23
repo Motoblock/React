@@ -6,7 +6,19 @@
   color: #C8945D;
 }
 
-.formUl {
-  list-style-type: none;
-  margin: 5px;
+.cards__boxAdd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.allRight {
+  color: #ff9a1c;
+  font-size: 28px;
+}
+
+.error {
+  color: red;
 }

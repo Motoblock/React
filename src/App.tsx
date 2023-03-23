@@ -40,20 +40,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-// function App() {
-//   return (
-//     <>
-//       <Routes>
-//         <Route path="/" element={<Layout />}>
-//           <Route index element={<Main />} />
-//           <Route path="/about" element={<About />} />
-//           <Route path="/forms" element={<Forms />} />
-//           <Route path="/404" element={<Page404 />} />
-//           <Route path="*" element={<Navigate to="/404" replace />} />
-//         </Route>
-//       </Routes>
-//     </>
-//   );
-// }
-
 export default router;
