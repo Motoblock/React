@@ -2,7 +2,7 @@ import React, { FormEvent, RefObject } from 'react';
 import { Button } from '../button/Button';
 import { Input } from '../input/Input';
 import { Select } from '../select/Select';
-import classForm from './catForm.module.css';
+import classForm from './CatForm.module.css';
 import { IFormStateType, propsInput, propsSelect, messagesErrors } from './types';
 import { ICardCatProps } from '../card/types';
 import { Card } from '../card/Card';
