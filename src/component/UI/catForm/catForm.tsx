@@ -4,7 +4,7 @@ import { Input } from './../input/Input';
 import { Select } from './../select/Select';
 import classForm from './CatForm.module.css';
 import { IFormStateType, propsInput, propsSelect, messagesErrors } from './types';
-import { ICardCatProps } from '../card/types';
+import { ICardCatProps } from './../card/types';
 import { Card } from './../card/Card';
 import { ErrorMessage } from './../error/Error';
 
