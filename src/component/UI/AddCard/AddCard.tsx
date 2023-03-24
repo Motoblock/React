@@ -99,7 +99,7 @@ export class AddCard extends React.Component {
 
   private validatePrice(el: RefObject<HTMLInputElement>) {
     const value = el.current?.value;
-    if (Number(value) === 0) {
+    if (Number(value) < 1) {
       this.saveState(`${messagesErrors[2].price?.priceValue}`, 'price');
       return false;
     }
@@ -142,8 +142,16 @@ export class AddCard extends React.Component {
     return true;
   }
 
-  private validateAge() {
+  validateAge() {
     if (!this.age.current!.value) {
+      this.saveState(`${messagesErrors[1].age?.ageValue}`, 'age');
+      return false;
+    }
+    const correct = this.age.current!.value.match(
+      /[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/
+    );
+
+    if (correct && correct[0] !== this.age.current!.value) {
       this.saveState(`${messagesErrors[1].age?.ageValue}`, 'age');
       return false;
     }
@@ -236,33 +244,35 @@ export class AddCard extends React.Component {
           onSubmit={(event) => this.handleSubmit(event)}
         >
           <label className={classForm.label}>Cats nickname </label>
-          <Input ref={this.name} {...propsInput[0]} />
+          <Input ref={this.name} {...propsInput[0]} data-testid={propsInput[0].name} />
           <ErrorMessage message={this.state.messages?.name} />
           <label className={classForm.label}>Date of birth</label>
-          <Input ref={this.age} {...propsInput[1]} />
+          <Input ref={this.age} {...propsInput[1]} data-testid={propsInput[1].name} />
           <ErrorMessage message={this.state.messages?.age} />
           <label className={classForm.label}>Gender </label>
           <label>
-            Male <input ref={this.sex0} name="sex" type="radio" value={0} />
+            Male <input ref={this.sex0} data-testid="sex0" name="sex" type="radio" value={0} />
           </label>
           <label>
-            &nbsp;Female <input ref={this.sex1} name="sex" type="radio" value={1} />
+            &nbsp;Female{' '}
+            <input ref={this.sex1} data-testid="sex1" name="sex" type="radio" value={1} />
           </label>
           <ErrorMessage message={this.state.messages?.sex} />
           <label className={classForm.label}>Breeds</label>
-          <Select ref={this.breed} {...propsSelect[0]} />
+          <Select ref={this.breed} {...propsSelect[0]} data-testid={propsSelect[0].name} />
           <ErrorMessage message={this.state.messages?.breed} />
           <label className={classForm.label}>Catterys</label>
-          <Select ref={this.catterys} {...propsSelect[1]} />
+          <Select ref={this.catterys} {...propsSelect[1]} data-testid={propsSelect[1].name} />
           <ErrorMessage message={this.state.messages?.cattery} />
           <label className={classForm.label}>Price </label>
-          <Input ref={this.price} {...propsInput[2]} />
+          <Input ref={this.price} {...propsInput[2]} data-testid={propsInput[2].name} />
           <ErrorMessage message={this.state.messages?.price} />
           <label className={classForm.label}>Photo of cats </label>
-          <Input ref={this.image} {...propsInput[3]} />
+          <Input ref={this.image} {...propsInput[3]} data-testid={propsInput[3].name} />
           <ErrorMessage message={this.state.messages?.image} />
           <label>
-            <input ref={this.counts} name="counts" type="checkbox" /> I am the owner of cat
+            <input ref={this.counts} name="counts" data-testid="counts" type="checkbox" /> I am the
+            owner of cat
           </label>
           <ErrorMessage message={this.state.messages?.counts} />
           <Button>Create card</Button>

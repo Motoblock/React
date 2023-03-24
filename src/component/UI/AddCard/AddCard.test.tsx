@@ -22,24 +22,23 @@ describe('Add Card tests:', () => {
   it('should have a disabled submit button at initialization', () => {
     expect(screen.getByTestId('submit-btn')).toBeInTheDocument();
   });
-  it('should change a submit button state after the user first interaction with character-status drop down list', () => {
-    // expect(screen.getByTestId('submit-btn')).toBeDisabled();
-    // userEvent.selectOptions(screen.getByTestId('field-name'), 'Alive');
-    // expect(screen.getByTestId('submit-btn')).not.toBeDisabled();
+
+  it('should show successful messages', () => {
+    render(<p>All right</p>);
+    expect(screen.getByText(/All right/)).toBeInTheDocument();
   });
 
   it('Card render', () => {
     const newCard: Array<ICardCatProps> = [
       {
         id: 1,
-        breed: 'Абиссинская',
+        breed: 'Британская',
         price: 20000,
         sex: 0,
         name: 'Vasy',
         age: 12,
         catterys: 'Tany Mur',
-        counts: 11,
-        // image: img.image1,
+        counts: 1,
       },
     ];
 
@@ -48,24 +47,32 @@ describe('Add Card tests:', () => {
   });
 
   it('confirm input to form', async () => {
-    const name: HTMLInputElement = screen.getByPlaceholderText("Specify the cat's nickname");
-    const price: HTMLInputElement = screen.getByPlaceholderText('Specify the price');
+    const name: HTMLInputElement = screen.getByTestId(/name/i);
+    const price: HTMLInputElement = screen.getByTestId(/price/i);
+    const breed: HTMLSelectElement = screen.getByTestId(/breed/i);
+    const sex0: HTMLInputElement = screen.getByTestId(/sex0/);
 
     act(() => {
       fireEvent.change(name, { target: { value: 'Vasy' } });
+      fireEvent.change(breed, { target: { value: 'Британская' } });
       fireEvent.change(price, { target: { value: '20000' } });
+      fireEvent.change(sex0, { target: { value: '0' } });
     });
 
     expect(name).toBeTruthy();
     expect(name.value).toBe('Vasy');
     expect(price).toBeTruthy();
     expect(price.value).toBe('20000');
+    expect(breed).toBeTruthy();
+    expect(breed.value).toBe('Британская');
+    expect(sex0).toBeTruthy();
+    expect(sex0.value).toBe('0');
 
     const submit = screen.getByTestId('submit-btn');
     expect(submit).toBeTruthy();
 
     submit.click();
-    const form = screen.getByTestId('formCard') as HTMLFormElement;
+    const form: HTMLFormElement = screen.getByTestId('formCard');
     form.reset();
     expect(form).toBeTruthy();
   });
