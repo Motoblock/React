@@ -1,5 +1,5 @@
 import React from 'react';
-import stCard from './Card.module.css';
+import stCard from './card.module.css';
 import mail from './../../../assets/images/male-logo.png';
 import woman from './../../../assets/images/woman-logo.png';
 import { ICardCatProps } from './types';
