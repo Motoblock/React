@@ -1,5 +1,5 @@
 import React from 'react';
-import { CatForm } from './../../component/UI/catForm/CatForm';
+import { AddCard } from '../../component/UI/AddCard/AddCard';
 import classForm from './form.module.css';
 
 export class Forms extends React.Component {
@@ -8,7 +8,7 @@ export class Forms extends React.Component {
       <>
         <div className={classForm.nameField}>Enter the cats details</div>
         <div className={classForm.formCard}>
-          <CatForm />
+          <AddCard />
         </div>
       </>
     );

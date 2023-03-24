@@ -7,7 +7,7 @@ interface IProps {
 
 export const Button = ({ children, ...props }: IProps) => {
   return (
-    <button {...props} className={btn.cardBtn}>
+    <button data-testid="submit-btn" {...props} className={btn.cardBtn}>
       {children}
     </button>
   );

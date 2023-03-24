@@ -1,14 +1,14 @@
 import React, { FormEvent, RefObject } from 'react';
-import { Button } from './../button/Button';
-import { Input } from './../input/Input';
-import { Select } from './../select/Select';
-import classForm from './CatForm.module.css';
+import { Button } from '../button/Button';
+import { Input } from '../input/Input';
+import { Select } from '../select/Select';
+import classForm from './AddCard.module.css';
 import { IFormStateType, propsInput, propsSelect, messagesErrors } from './types';
-import { ICardCatProps } from './../card/types';
-import { Card } from './../card/Card';
-import { ErrorMessage } from './../error/Error';
+import { ICardCatProps } from '../card/types';
+import { Card } from '../card/Card';
+import { ErrorMessage } from '../error/Error';
 
-export class CatForm extends React.Component {
+export class AddCard extends React.Component {
   name: React.RefObject<HTMLInputElement>;
   age: React.RefObject<HTMLInputElement>;
   breed: React.RefObject<HTMLSelectElement>;
@@ -230,6 +230,7 @@ export class CatForm extends React.Component {
       <>
         {this.state.confirm && <p className={classForm.allRight}>All right</p>}
         <form
+          data-testid="formCard"
           ref={this.forms}
           className={classForm.formCard}
           onSubmit={(event) => this.handleSubmit(event)}

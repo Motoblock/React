@@ -1,6 +1,6 @@
-import { breedsData } from './../../../assets/data/breeds';
-import { catterysData } from './../../../assets/data/catterys';
-import { ICardCatProps } from './../card/types';
+import { breedsData } from '../../../assets/data/breeds';
+import { catterysData } from '../../../assets/data/catterys';
+import { ICardCatProps } from '../card/types';
 
 export interface IFormStateType {
   confirm: boolean;
@@ -20,21 +20,25 @@ export interface IFormStateType {
 export const propsInput = [
   {
     name: 'name',
+    label: 'name',
     type: 'text',
     placeholder: "Specify the cat's nickname",
   },
   {
     name: 'age',
+    label: 'age',
     type: 'date',
     max: Date(),
   },
   {
     name: 'price',
+    label: 'price',
     type: 'number',
     placeholder: 'Specify the price',
   },
   {
     name: 'image',
+    label: 'image',
     type: 'file',
     accept: 'image/*',
   },
@@ -44,10 +48,12 @@ export const propsSelect = [
   {
     name: 'breed',
     data: breedsData,
+    label: 'breed',
   },
   {
     name: 'cattery',
     data: catterysData,
+    label: 'cattery',
   },
 ];
 
