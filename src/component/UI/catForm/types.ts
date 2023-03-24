@@ -1,4 +1,4 @@
-import { breedsData } from '../../../assets/data/breeds';
+import { breedsData } from './../../../assets/data/breeds';
 import { catterysData } from './../../../assets/data/catterys';
 import { ICardCatProps } from './../card/types';
 

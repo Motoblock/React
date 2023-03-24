@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Select.module.css';
-import { IBreedsData } from '../../../assets/data/breeds';
-import { ICatterysData } from '../../../assets/data/catterys';
+import { IBreedsData } from './../../../assets/data/breeds';
+import { ICatterysData } from './../../../assets/data/catterys';
 
 interface ISelect {
   name: string;
