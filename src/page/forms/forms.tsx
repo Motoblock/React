@@ -1,5 +1,5 @@
 import React from 'react';
-import { CatForm } from '../../component/UI/catForm/catForm';
+import { CatForm } from '../../component/UI/catForm/CatForm';
 import classForm from './form.module.css';
 
 export class Forms extends React.Component {
@@ -14,5 +14,3 @@ export class Forms extends React.Component {
     );
   }
 }
-
-export default Forms;

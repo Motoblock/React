@@ -4,7 +4,7 @@ import mail from './../../../assets/images/male-logo.png';
 import woman from './../../../assets/images/woman-logo.png';
 import { ICardCatProps } from './types';
 
-class Card extends React.Component<ICardCatProps, { value: string }> {
+export class Card extends React.Component<ICardCatProps, { value: string }> {
   render() {
     const link = `${this.props.image}`;
     let sex = (
@@ -32,5 +32,3 @@ class Card extends React.Component<ICardCatProps, { value: string }> {
     );
   }
 }
-
-export default Card;

@@ -3,24 +3,11 @@ import { Button } from '../button/Button';
 import { Input } from '../input/Input';
 import { Select } from '../select/Select';
 import classForm from './catForm.module.css';
-import { propsInput, propsSelect, messagesErrors } from './types';
-import { ICardCatProps } from './../card/types';
-import Card from './../../UI/card/Card';
+import { IFormStateType, propsInput, propsSelect, messagesErrors } from './types';
+import { ICardCatProps } from '../card/types';
+import { Card } from '../card/Card';
+import { ErrorMessage } from '../error/Error';
 
-interface IFormStateType {
-  confirm: boolean;
-  cards: ICardCatProps[];
-  messages: {
-    name: string;
-    age: string;
-    price: string;
-    sex: string;
-    breed: string;
-    cattery: string;
-    image: string;
-    counts: string;
-  };
-}
 export class CatForm extends React.Component {
   name: React.RefObject<HTMLInputElement>;
   age: React.RefObject<HTMLInputElement>;
@@ -93,7 +80,10 @@ export class CatForm extends React.Component {
       this.saveState(`${messagesErrors[0].name?.nameValue}`, 'name');
       return false;
     }
-    // value.match(/[!/^\d*(?:\.\d{0,2})?$/]/) &&
+    if (!value.match(/^[a-zа-я -]+$/i)) {
+      this.saveState(`${messagesErrors[0].name?.nameString}`, 'name');
+      return false;
+    }
     if (!(value.length > 1) || !(value.length < 30)) {
       this.saveState(`${messagesErrors[0].name?.nameSize}`, 'name');
       return false;
@@ -165,10 +155,14 @@ export class CatForm extends React.Component {
     this.saveState('', 'age');
     return true;
   }
+
   private validateImage(el: RefObject<HTMLInputElement>) {
     if (el.current?.files && el.current?.files?.length !== 0) {
       const filesRef = el.current?.files;
-      console.log(filesRef[0].type.includes('image'));
+      if (!filesRef[0].type.includes('image')) {
+        this.saveState(`${messagesErrors[6].image?.imageFormat}`, 'image');
+        return false;
+      }
       const selecteds = [...[...filesRef]];
       selecteds.forEach((i) => (this.imageLink = URL.createObjectURL(i)));
 
@@ -178,6 +172,7 @@ export class CatForm extends React.Component {
     this.saveState(`${messagesErrors[6].image?.imageValue}`, 'image');
     return false;
   }
+
   private validateOwner() {
     if (this.counts.current!.checked === false) {
       this.saveState(`${messagesErrors[7].counts?.countsValue}`, 'counts');
@@ -240,54 +235,35 @@ export class CatForm extends React.Component {
           onSubmit={(event) => this.handleSubmit(event)}
         >
           <label className={classForm.label}>Cats nickname </label>
-          <span key={1} className={classForm.error}>
-            {this.state.messages?.name}
-          </span>
           <Input ref={this.name} {...propsInput[0]} />
+          <ErrorMessage message={this.state.messages?.name} />
           <label className={classForm.label}>Date of birth</label>
-          <span key={6} className={classForm.error}>
-            {this.state.messages?.age}
-          </span>
           <Input ref={this.age} {...propsInput[1]} />
+          <ErrorMessage message={this.state.messages?.age} />
           <label className={classForm.label}>Gender </label>
-          <span key={2} className={classForm.error}>
-            {this.state.messages?.sex}
-          </span>
           <label>
             Male <input ref={this.sex0} name="sex" type="radio" value={0} />
           </label>
           <label>
             &nbsp;Female <input ref={this.sex1} name="sex" type="radio" value={1} />
           </label>
-          <br></br>
+          <ErrorMessage message={this.state.messages?.sex} />
           <label className={classForm.label}>Breeds</label>
-          <span key={3} className={classForm.error}>
-            {this.state.messages?.breed}
-          </span>
           <Select ref={this.breed} {...propsSelect[0]} />
-          <br></br>
+          <ErrorMessage message={this.state.messages?.breed} />
           <label className={classForm.label}>Catterys</label>
-          <span key={4} className={classForm.error}>
-            {this.state.messages?.cattery}
-          </span>
           <Select ref={this.catterys} {...propsSelect[1]} />
-          <br></br>
+          <ErrorMessage message={this.state.messages?.cattery} />
           <label className={classForm.label}>Price </label>
-          <span key={5} className={classForm.error}>
-            {this.state.messages?.price}
-          </span>
           <Input ref={this.price} {...propsInput[2]} />
+          <ErrorMessage message={this.state.messages?.price} />
           <label className={classForm.label}>Photo of cats </label>
-          <span key={7} className={classForm.error}>
-            {this.state.messages?.image}
-          </span>
           <Input ref={this.image} {...propsInput[3]} />
-          <span key={8} className={classForm.error}>
-            {this.state.messages?.counts}
-          </span>
+          <ErrorMessage message={this.state.messages?.image} />
           <label>
             <input ref={this.counts} name="counts" type="checkbox" /> I am the owner of cat
           </label>
+          <ErrorMessage message={this.state.messages?.counts} />
           <Button>Create card</Button>
         </form>
         <div className={classForm.cards__boxAdd}>

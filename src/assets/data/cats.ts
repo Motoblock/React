@@ -1,4 +1,4 @@
-import { ICardCatProps } from './../../component/UI/card/Card';
+import { ICardCatProps } from './../../component/UI/card/types';
 import * as img from './../../assets/data/catImages';
 
 const catsData: Array<ICardCatProps> = [

@@ -1,8 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import classes from './Input.module.css';
-import IInputProps from './interface';
+import { IInputProps } from './interface';
 
-class MySearch extends React.Component<object, IInputProps> {
+export class MySearch extends React.Component<object, IInputProps> {
   constructor(props: IInputProps) {
     super(props);
   }
@@ -22,7 +22,6 @@ class MySearch extends React.Component<object, IInputProps> {
     const value = localStorage.getItem('searchInput');
 
     if (!value) return;
-
     if (value) this.setState({ value: value });
   }
 
@@ -41,5 +40,3 @@ class MySearch extends React.Component<object, IInputProps> {
     );
   }
 }
-
-export default MySearch;
