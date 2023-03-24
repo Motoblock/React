@@ -1,12 +1,12 @@
 import React, { FormEvent, RefObject } from 'react';
-import { Button } from '../button/Button';
-import { Input } from '../input/Input';
-import { Select } from '../select/Select';
+import { Button } from './../button/Button';
+import { Input } from './../input/Input';
+import { Select } from './../select/Select';
 import classForm from './CatForm.module.css';
 import { IFormStateType, propsInput, propsSelect, messagesErrors } from './types';
 import { ICardCatProps } from '../card/types';
-import { Card } from '../card/Card';
-import { ErrorMessage } from '../error/Error';
+import { Card } from './../card/Card';
+import { ErrorMessage } from './../error/Error';
 
 export class CatForm extends React.Component {
   name: React.RefObject<HTMLInputElement>;
