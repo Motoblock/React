@@ -56,11 +56,11 @@ export class AddCard extends React.Component {
     this.imageLink = '';
   }
 
-  private datediff(first: Date, second: Date) {
+  datediff(first: Date, second: Date) {
     return Math.trunc((Number(second) - Number(first)) / (1000 * 60 * 60 * 24 * 30));
   }
 
-  private saveState(error: string, field: string) {
+  saveState(error: string, field: string) {
     const mesAdd = this.state.messages;
     if ('name' === field) mesAdd.name = error;
     if ('price' === field) mesAdd.price = error;
@@ -74,7 +74,7 @@ export class AddCard extends React.Component {
     this.setState({ messages: mesAdd });
   }
 
-  private validateName(el: RefObject<HTMLInputElement>) {
+  validateName(el: RefObject<HTMLInputElement>) {
     const value = el.current?.value;
     if (!value) {
       this.saveState(`${messagesErrors[0].name?.nameValue}`, 'name');
@@ -97,7 +97,7 @@ export class AddCard extends React.Component {
     return true;
   }
 
-  private validatePrice(el: RefObject<HTMLInputElement>) {
+  validatePrice(el: RefObject<HTMLInputElement>) {
     const value = el.current?.value;
     if (Number(value) < 1) {
       this.saveState(`${messagesErrors[2].price?.priceValue}`, 'price');
@@ -122,7 +122,7 @@ export class AddCard extends React.Component {
     return true;
   }
 
-  private validateBreeds(el: RefObject<HTMLSelectElement>) {
+  validateBreeds(el: RefObject<HTMLSelectElement>) {
     const value = el.current?.value;
     if (value === '') {
       this.saveState(`${messagesErrors[4].breed?.breedValue}`, 'breed');
@@ -132,7 +132,7 @@ export class AddCard extends React.Component {
     return true;
   }
 
-  private validateCatterys(el: RefObject<HTMLSelectElement>) {
+  validateCatterys(el: RefObject<HTMLSelectElement>) {
     const value = el.current?.value;
     if (value === '') {
       this.saveState(`${messagesErrors[5].cattery?.catteryValue}`, 'cattery');
@@ -142,8 +142,9 @@ export class AddCard extends React.Component {
     return true;
   }
 
-  validateAge() {
-    if (!this.age.current!.value) {
+  validateAge(el: RefObject<HTMLInputElement>) {
+    const value = el.current?.value;
+    if (!value) {
       this.saveState(`${messagesErrors[1].age?.ageValue}`, 'age');
       return false;
     }
@@ -151,11 +152,11 @@ export class AddCard extends React.Component {
       /[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/
     );
 
-    if (correct && correct[0] !== this.age.current!.value) {
+    if (correct && correct[0] !== value) {
       this.saveState(`${messagesErrors[1].age?.ageValue}`, 'age');
       return false;
     }
-    this.month = this.datediff(new Date(this.age.current!.value), new Date());
+    this.month = this.datediff(new Date(value), new Date());
     if (this.month === 0) {
       this.saveState(`${messagesErrors[1].age?.ageSmall}`, 'age');
       return false;
@@ -197,7 +198,7 @@ export class AddCard extends React.Component {
     field.push(this.validatePrice(this.price));
     field.push(this.validateBreeds(this.breed));
     field.push(this.validateCatterys(this.catterys));
-    field.push(this.validateAge());
+    field.push(this.validateAge(this.age));
     field.push(this.validateSex());
     field.push(this.validateImage(this.image));
     field.push(this.validateOwner());

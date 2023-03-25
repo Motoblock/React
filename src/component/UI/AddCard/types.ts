@@ -29,6 +29,7 @@ export const propsInput = [
     label: 'age',
     type: 'date',
     max: Date(),
+    role: 'age',
   },
   {
     name: 'price',
