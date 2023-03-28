@@ -1,11 +1,14 @@
 import React from 'react';
-import catsData from '../assets/data/cats';
-import { Card } from './UI/card/Card';
 
-export const CardList = () => {
+import { Card } from './UI/card/Card';
+import { ICardCatProps } from './UI/card/types';
+
+export const CardList = (props: { items: ICardCatProps[] }) => {
+  const { items } = props;
+  if (!items.length) return null;
   return (
     <div className="cards__box">
-      {catsData.map((el) => (
+      {items.map((el: ICardCatProps) => (
         <Card key={el.id} {...el} />
       ))}
     </div>

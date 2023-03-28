@@ -1,18 +1,34 @@
-import React from 'react';
-import { MySearch } from './../../component/UI/input/MySearch';
-import { CardList } from '../../component/CardList';
-import './../main/main.module.css';
-import { IInputProps } from './../../component/UI/input/interface';
+import React, { useEffect, useRef, useState } from 'react';
 
-export class Main extends React.Component {
-  prop: IInputProps = { type: 'search', placeholder: 'Input some body...' };
-  render() {
-    return (
-      <>
-        <h2>Paws</h2>
-        <MySearch {...this.prop} />
-        <CardList />
-      </>
-    );
-  }
+import { Search } from './../../component/UI/input/Search';
+import { CardList } from '../../component/CardList';
+import catsData from './../../assets/data/cats';
+import './../main/main.module.css';
+
+export function Main() {
+  const inputRef = useRef(null);
+  // localStorage.getItem('searchInput') ? localStorage.getItem('searchInput') :
+  const [search, setSearch] = useState('');
+  const [items, setItems] = useState(catsData);
+
+  useEffect(() => {
+    setItems(catsData.filter((el) => el.breed.toLowerCase().includes(search.toLowerCase())));
+    // return () => {
+    // console.log(inputRef.current);
+    // localStorage.setItem('searchInput', inputRef.current?.value[0]);
+    if (search) {
+      localStorage.setItem('searchInput', search);
+    } else {
+      localStorage.setItem('searchInput', '');
+    }
+    // };
+  }, [search]);
+
+  return (
+    <>
+      <h2>Find</h2>
+      <Search ref={inputRef} onChange={(e) => setSearch(e.target.value)} />
+      <CardList items={items} />
+    </>
+  );
 }
