@@ -6,7 +6,7 @@ interface IProps {
   [title: string]: string;
 }
 
-class Header extends Component<IProps, { title: string }> {
+export class Header extends Component<IProps, { title: string }> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -62,5 +62,3 @@ class Header extends Component<IProps, { title: string }> {
     );
   }
 }
-
-export default Header;

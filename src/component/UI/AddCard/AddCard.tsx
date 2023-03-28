@@ -74,8 +74,8 @@ export class AddCard extends React.Component {
     this.setState({ messages: mesAdd });
   }
 
-  validateName(el: RefObject<HTMLInputElement>) {
-    const value = el.current?.value;
+  validateName(el: string | undefined) {
+    const value = el;
     if (!value) {
       this.saveState(`${messagesErrors[0].name?.nameValue}`, 'name');
       return false;
@@ -194,7 +194,7 @@ export class AddCard extends React.Component {
   private validateForm() {
     const field: boolean[] = [];
 
-    field.push(this.validateName(this.name));
+    field.push(this.validateName(this.name?.current?.value));
     field.push(this.validatePrice(this.price));
     field.push(this.validateBreeds(this.breed));
     field.push(this.validateCatterys(this.catterys));

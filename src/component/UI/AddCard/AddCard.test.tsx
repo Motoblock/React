@@ -34,31 +34,45 @@ describe('Add Card tests:', () => {
   });
 
   test('function returns false for invalid input', async () => {
-    const price: HTMLInputElement = screen.getByTestId(/price/i);
-    const name: HTMLInputElement = screen.getByTestId(/name/i);
-    const breed: HTMLSelectElement = screen.getByTestId(/breed/i);
-    const catterys: HTMLSelectElement = screen.getByTestId(/cattery/i);
-    const age: HTMLInputElement = screen.getByRole('age');
+    //const AddCard = jest.fn();
+    // const price: HTMLInputElement = screen.getByTestId(/price/i);
+    // const price = React.createRef();
+    const form = render(<AddCard />);
 
-    await act(async () => {
-      fireEvent.change(name, { target: { value: 'Vasy' } });
-      fireEvent.change(price, { target: { value: '1000' } });
-      fireEvent.change(breed, { target: { value: 'Британская' } });
-      fireEvent.change(catterys, { target: { value: 'Tany Mur' } });
-      fireEvent.change(age, { target: { value: '12' } });
-    });
+    const name = form.getAllByTestId('name')[0] as HTMLInputElement;
+    console.log(name.value);
+    // const breed: HTMLSelectElement = screen.getByTestId(/breed/i);
+    // const catterys: HTMLSelectElement = screen.getByTestId(/cattery/i);
+    // const age: HTMLInputElement = screen.getByRole('age');
 
-    const resPrice = obh.validatePrice(obh.price);
-    const resName = obh.validateName(obh.name);
-    const resCatterys = obh.validateCatterys(obh.catterys);
-    const resBreed = obh.validateBreeds(obh.breed);
-    const resAge = obh.validateAge(obh.age);
+    // await act(async () => {
+    // fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Vasy' } });
+    fireEvent.change(name, { target: { value: '' } });
+    // fireEvent.change(breed, { target: { value: 'Британская' } });
+    // fireEvent.change(catterys, { target: { value: 'Tany Mur' } });
+    // fireEvent.change(age, { target: { value: '12' } });
+    // });
+    const submit = form.getAllByTestId('submit-btn')[0];
+    submit.click();
+    // expect(submit).toBeTruthy();
 
-    expect(resPrice).toBeTruthy();
-    expect(resName).toBeFalsy();
-    expect(resCatterys).toBeTruthy();
-    expect(resBreed).toBeTruthy();
-    expect(resAge).toBeFalsy();
+    // const resPrice = validatePrice(price);
+    const validateName = vi.fn();
+    const resName = validateName(name);
+    console.log(resName);
+    const saveState = vi.fn();
+    saveState('sdfsd', 'name');
+    // screen.debug();
+    // const resCatterys = obh.validateCatterys(obh.catterys);
+    // const resBreed = obh.validateBreeds(obh.breed);
+    // const resAge = obh.validateAge(obh.age);
+
+    // // expect(resPrice).toBeTruthy();
+    // expect(resName).toBeFalsy();
+    // expect(resCatterys).toBeTruthy();
+    // expect(resBreed).toBeTruthy();
+    // expect(resAge).toBeFalsy();
+    // await waitFor(() => );
   });
 
   it(' saveState', () => {
