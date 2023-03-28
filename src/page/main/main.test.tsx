@@ -16,7 +16,7 @@ describe('main', () => {
   });
 
   beforeEach(() => {
-    render(<CardList />);
+    render(<CardList items={[]} />);
   });
 
   it('amount of cards in card list have length equal 50', () => {

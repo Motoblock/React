@@ -51,6 +51,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   padding: 3px 0;
+  margin: 10px;  
+  font-size: 34px;
 }
 
 .header__container {
@@ -61,24 +63,16 @@ h1 {
 .item {
   color: #C8945D;
   font-weight: 500;
+  margin: 10px;
+  text-decoration: none;
 }
 
 .active {
   color: #ff9a1c;
   cursor: default;
 }
-.nav {
-  display: flex;
-  align-items: center;
-}
 
-.nav .item  {
-  margin: 10px;
-  text-decoration: none;
-  font-size: 34px;
-}
-
-.nav .item:hover {
+.item:hover {
   color: #ff9a1c;
 }
 .main {
