@@ -15,7 +15,7 @@ export function Main() {
     setItems(catsData.filter((el) => el.breed.toLowerCase().includes(search.toLowerCase())));
     // inputRef.current = search;
     return () => {
-      console.log(inputRef.current);
+      // console.log(inputRef.current);
       // localStorage.setItem('searchInput', inputRef.current?.value[0]);
       if (search) {
         localStorage.setItem('searchInput', search);

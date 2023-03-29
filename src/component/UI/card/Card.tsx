@@ -1,4 +1,5 @@
 import React from 'react';
+
 import stCard from './card.module.css';
 import mail from './../../../assets/images/male-logo.png';
 import woman from './../../../assets/images/woman-logo.png';
@@ -23,7 +24,7 @@ export class Card extends React.Component<ICardCatProps, { value: string }> {
           <div className={stCard.card__age}>
             {this.props.age} месяцев {sex}
           </div>
-          <div className={stCard.card__name}>{this.props.name}</div>
+          <h3 className={stCard.card__name}>{this.props.name}</h3>
           <div className={stCard.card__breed}>{this.props.breed}</div>
           <div className={stCard.card__cattery}>{this.props.catterys}</div>
           <div className={stCard.card__price}>{this.props.price} ₽</div>
