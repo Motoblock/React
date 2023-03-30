@@ -7,9 +7,8 @@ import { Button } from '../button/Button';
 import { breedsData } from '../../../assets/data/breeds';
 import { catterysData } from '../../../assets/data/catterys';
 import { Input } from '../input/Input';
-// import { Select } from '../select/Select';
+import { Select } from '../select/Select';
 import classForm from './AddCard.module.css';
-
 import { ICardCatProps } from '../card/types';
 import { Card } from '../card/Card';
 import { ErrorMessage } from '../error/Error';
@@ -91,53 +90,45 @@ export function AddCard() {
           Gender{' '}
         </label>
         Male{' '}
-        <input value={0} type="radio" {...register('sex', { required: 'Specify the gender' })} />
+        <input
+          id="2"
+          value={0}
+          type="radio"
+          {...register('sex', { required: 'Specify the gender' })}
+        />
         &nbsp;Female{' '}
-        <input value={1} type="radio" {...register('sex', { required: 'Specify the gender' })} />
+        <input
+          id="3"
+          value={1}
+          type="radio"
+          {...register('sex', { required: 'Specify the gender' })}
+        />
         {errors.sex && <ErrorMessage message={`${errors.sex.message}`} />}
         <br />
         <label className={classForm.label} htmlFor="breed">
           Breed
         </label>
-        <select
-          className={classForm.formInput}
+        <Select
+          data={breedsData}
           {...register('breed', {
             validate: (value) => value !== '',
           })}
-        >
-          <option value={''}>...</option>
-          {breedsData.map((item, index) => {
-            return (
-              <option key={index} value={item.name}>
-                {item.name}
-              </option>
-            );
-          })}
-        </select>
+        />
         {errors.breed && <ErrorMessage message="Specify the breed" />}
         <label className={classForm.label} htmlFor="price">
           Price
         </label>
-        <Input id={'5'} placeholder="Specify the price" type="number" {...register('price')} />
+        <Input id="5" placeholder="Specify the price" type="number" {...register('price')} />
         {errors.price && <ErrorMessage message={`${messagesErrors[2].price?.priceValue}`} />}
         <label className={classForm.label} htmlFor="catterys">
           Catterys
         </label>
-        <select
-          className={classForm.formInput}
+        <Select
+          data={catterysData}
           {...register('catterys', {
             validate: (value) => value !== '',
           })}
-        >
-          <option value={''}>...</option>
-          {catterysData.map((item, index) => {
-            return (
-              <option key={index} value={item.name}>
-                {item.name}
-              </option>
-            );
-          })}
-        </select>
+        />
         {errors.catterys && <ErrorMessage message="Specify the catterys" />}
         <label className={classForm.label} htmlFor="counts"></label>
         <input

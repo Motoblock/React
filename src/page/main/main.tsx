@@ -10,7 +10,7 @@ export function Main() {
   const [search, setSearch] = useState(localStorage.getItem('searchInput') || '');
   const [items, setItems] = useState(catsData);
   const inputRef = useRef(search);
-  const inputRef2 = useRef<HTMLInputElement>(null);
+  const inputRefElement = useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     inputRef.current = search;
@@ -26,7 +26,11 @@ export function Main() {
   return (
     <>
       <h2>Find yourself a fuzzy</h2>
-      <Search ref1={inputRef2} value={search} onChange={(e) => setSearch(e.target.value)} />
+      <Search
+        refLink={inputRefElement}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <CardList items={items} />
     </>
   );
