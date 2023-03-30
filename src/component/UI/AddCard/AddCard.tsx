@@ -1,114 +1,181 @@
-import React from 'react';
-// import ReactDOM from 'react-dom';
-import { FieldValues, useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button } from '../button/Button';
-// import { Input } from '../input/Input';
+// import { IBreedsData } from './../../../assets/data/breeds';
+// import { ICatterysData } from './../../../assets/data/catterys';
+import { breedsData } from '../../../assets/data/breeds';
+import { catterysData } from '../../../assets/data/catterys';
+import { Input } from '../input/Input';
 // import { Select } from '../select/Select';
 import classForm from './AddCard.module.css';
-// import { IFormStateType, propsInput, propsSelect, messagesErrors } from './types';
-// import { ICardCatProps } from '../card/types';
-// import { Card } from '../card/Card';
+
+import { ICardCatProps } from '../card/types';
+import { Card } from '../card/Card';
 import { ErrorMessage } from '../error/Error';
+import { messagesErrors, propsInput } from './dataError';
 
 export function AddCard() {
+  const [cards, setCards] = useState<ICardCatProps[]>([]);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    criteriaMode: 'all',
+  });
 
   useForm({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
   });
 
-  const onSubmit = (data: FieldValues) => {
-    alert(JSON.stringify(data));
-  };
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const arr: ICardCatProps[] = cards;
+    console.log(JSON.stringify(arr));
 
-  const intialValues = {
-    name: '',
-    age: 0,
-    sex: 0,
-    breed: '',
-    cattery: '',
-    image: '',
-    counts: '',
+    let imageLink = '';
+    const selecteds = [...[...data.image]];
+    selecteds.forEach((i) => (imageLink = URL.createObjectURL(i)));
+
+    const newCard: ICardCatProps = {
+      id: data.length,
+      name: data.name,
+      age: data.month,
+      breed: data.breed,
+      sex: data.sex,
+      price: Number(data.price),
+      image: imageLink,
+      counts: Number(data.counts),
+      catterys: data.catterys,
+    };
+    arr.push(newCard);
+    setCards(arr);
   };
 
   return (
-    <form className={classForm.formCard} onSubmit={handleSubmit(onSubmit)}>
-      <label className={classForm.label} htmlFor="name">
-        Cats nickname
+    <>
+      <form className={classForm.formCard} onSubmit={handleSubmit(onSubmit)}>
+        <label className={classForm.label} htmlFor="name">
+          Cats nickname
+        </label>
         <input
           className={classForm.formInput}
-          defaultValue={intialValues.name}
-          placeholder="Specify the cat's nickname"
+          placeholder={propsInput[0].placeholder}
           {...register('name', {
-            validate: (value) => value !== '',
-            pattern: /^[A-Za-z]_-+$/i,
-            maxLength: 25,
+            required: true,
+            pattern: /^[A-Za-z_-]{2, 25}+$/,
           })}
         />
-        {errors.name && <ErrorMessage message="Cats nickname name is not empty" />}
-      </label>
-      <label className={classForm.label} htmlFor="age">
-        Date of birth
+        {errors.name && errors.name.type === 'required' && (
+          <ErrorMessage message={`${messagesErrors[0].name?.nameValue}`} />
+        )}
+        {errors.name && errors.name.type === 'pattern' && (
+          <ErrorMessage message={`${messagesErrors[0].name?.nameString}`} />
+        )}
+        <label className={classForm.label} htmlFor="age">
+          Date of birth
+        </label>
         <input
-          defaultValue={intialValues.age}
           type="date"
           className={classForm.formInput}
           {...register('age', {
-            validate: (value) => value.length > 3,
-          })}
-        />
-        {errors.age && <ErrorMessage message="Specify the date of birth" />}
-      </label>
-
-      <label className={classForm.label} htmlFor="sex">
-        Male <input value={0} type="radio" {...register('sex')} />
-        Female <input value={1} type="radio" {...register('sex')} />
-      </label>
-      <label className={classForm.label} htmlFor="sex">
-        Breeds
-        <input
-          defaultValue={intialValues.age}
-          placeholder="0"
-          type="select"
-          {...register('age', {
+            required: `${messagesErrors[1].age?.ageValue}`,
             validate: {
-              positiveNumber: (value) => parseFloat(value) > 0,
-              lessThanHundred: (value) => parseFloat(value) < 200,
+              datediff: (value) => datediff(value) > 1 || 'At least 2 months',
             },
           })}
         />
-      </label>
-      {/* {errors.age && errors.age.type === 'positiveNumber' && <p>Your age is invalid</p>}
-      {errors.age && errors.age.type === 'lessThanHundred' && (
-        <p>Your age should be greater than 200</p>
-      )} */}
-      <br />
-      <label className={classForm.label} htmlFor="price">
-        Price
-        <input
+        {errors.age && <ErrorMessage message={`${errors.age.message}`} />}
+        <label className={classForm.label} htmlFor="sex">
+          Gender{' '}
+        </label>
+        Male{' '}
+        <input value={0} type="radio" {...register('sex', { required: 'Specify the gender' })} />
+        &nbsp;Female{' '}
+        <input value={1} type="radio" {...register('sex', { required: 'Specify the gender' })} />
+        {errors.sex && <ErrorMessage message={`${errors.sex.message}`} />}
+        <br />
+        <label className={classForm.label} htmlFor="breed">
+          Breed
+        </label>
+        <select
           className={classForm.formInput}
-          placeholder="Specify the price"
-          type="number"
-          {...register('price', {
+          {...register('breed', {
             validate: (value) => value !== '',
-            maxLength: 25,
+          })}
+        >
+          <option value={''}>...</option>
+          {breedsData.map((item, index) => {
+            return (
+              <option key={index} value={item.name}>
+                {item.name}
+              </option>
+            );
+          })}
+        </select>
+        {errors.breed && <ErrorMessage message="Specify the breed" />}
+        <label className={classForm.label} htmlFor="price">
+          Price
+        </label>
+        <Input id={'5'} placeholder="Specify the price" type="number" {...register('price')} />
+        {errors.price && <ErrorMessage message={`${messagesErrors[2].price?.priceValue}`} />}
+        <label className={classForm.label} htmlFor="catterys">
+          Catterys
+        </label>
+        <select
+          className={classForm.formInput}
+          {...register('catterys', {
+            validate: (value) => value !== '',
+          })}
+        >
+          <option value={''}>...</option>
+          {catterysData.map((item, index) => {
+            return (
+              <option key={index} value={item.name}>
+                {item.name}
+              </option>
+            );
+          })}
+        </select>
+        {errors.catterys && <ErrorMessage message="Specify the catterys" />}
+        <label className={classForm.label} htmlFor="counts"></label>
+        <input
+          value={0}
+          type="checkbox"
+          {...register('counts', {
+            required: 'Only owners can add information',
+          })}
+        />{' '}
+        I am the owner of cat
+        {errors.counts && <ErrorMessage message={`${errors.counts.message}`} />}
+        <br />
+        <label className={classForm.label} htmlFor="image">
+          Photo of cats
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          className={classForm.formInput}
+          placeholder="file_input"
+          {...register('image', {
+            required: 'Specify the foto',
           })}
         />
-        {errors.price && <ErrorMessage message="Specify the cost" />}
-      </label>
-
-      <Button>Create card</Button>
-    </form>
+        {errors.image && <ErrorMessage message={'Specify the foto'} />}
+        <Button>Create card</Button>
+      </form>
+      <div className={classForm.cards__boxAdd}>
+        {cards.map((card, index) => {
+          return <Card key={index} {...card} />;
+        })}
+      </div>
+    </>
   );
 }
 
 const datediff = (first: Date) => {
+  if (!first) first = new Date();
   return Math.trunc((Number(new Date()) - Number(first)) / (1000 * 60 * 60 * 24 * 30));
 };
 

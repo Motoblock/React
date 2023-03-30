@@ -1,8 +1,8 @@
-import { MutableRefObject } from 'react';
+import { RefObject } from 'react';
 
 export interface IInputProps {
   placeholder?: string;
   value?: string;
-  ref?: MutableRefObject<HTMLInputElement | null>;
+  ref1: RefObject<HTMLInputElement>;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
