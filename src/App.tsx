@@ -1,12 +1,13 @@
 import React from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
+
 import { Main } from './page/main/main';
 import { Forms } from './page/forms/forms';
 import About from './page/about/about';
 import Page404 from './page/404/404';
 import { Layout } from './component/Layout';
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
@@ -39,5 +40,3 @@ const router = createBrowserRouter([
     element: <Navigate to="/404" replace />,
   },
 ]);
-
-export default router;
