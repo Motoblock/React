@@ -14,10 +14,3 @@ export interface IFormStateType {
     counts: string;
   };
 }
-
-export interface IinputTextProps {
-  placeholder?: string;
-  type: string;
-  id: string;
-  errors?: string;
-}

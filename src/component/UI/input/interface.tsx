@@ -1,9 +1,9 @@
-import { RefObject } from 'react';
-
 export interface IInputProps {
   placeholder?: string;
   value?: string;
-  defaultValue?: string;
-  refLink?: RefObject<HTMLInputElement>;
+  type?: string;
+  id?: string;
+  defaultValue?: string | '';
+  accept?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

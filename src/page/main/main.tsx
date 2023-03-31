@@ -6,31 +6,25 @@ import catsData from './../../assets/data/cats';
 import './../main/main.module.css';
 
 export function Main() {
-  // localStorage.getItem('searchInput') ? localStorage.getItem('searchInput') :
   const [search, setSearch] = useState(localStorage.getItem('searchInput') || '');
   const [items, setItems] = useState(catsData);
   const inputRef = useRef(search);
-  const inputRefElement = useRef<HTMLInputElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputRef.current = search;
     setItems(catsData.filter((el) => el.breed.toLowerCase().includes(search.toLowerCase())));
   }, [search]);
 
   useEffect(() => {
     return () => {
-      if (inputRef.current) localStorage.setItem('searchInput', inputRef.current);
+      localStorage.setItem('searchInput', inputRef.current);
     };
   }, []);
 
   return (
     <>
       <h2>Find yourself a fuzzy</h2>
-      <Search
-        refLink={inputRefElement}
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <Search value={search} onChange={(e) => setSearch(e.target.value)} />
       <CardList items={items} />
     </>
   );

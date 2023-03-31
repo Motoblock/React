@@ -46,8 +46,8 @@ export const messagesErrors = [
   {
     name: {
       nameValue: 'The field should not be empty',
-      nameString:
-        'The name contains only letters and must be at least 2 letters and no more than 25',
+      nameString: 'The name contains only letters ',
+      nameSize: 'The name must be at least 2 letters and no more than 25',
       nameUpper: ' The name must begin with a capital letter',
     },
   },

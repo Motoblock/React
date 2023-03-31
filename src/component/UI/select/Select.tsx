@@ -5,6 +5,7 @@ import { IBreedsData } from './../../../assets/data/breeds';
 import { ICatterysData } from './../../../assets/data/catterys';
 
 interface ISelect {
+  id: string;
   name: string;
   data: IBreedsData[] | ICatterysData[];
 }

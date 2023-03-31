@@ -13,6 +13,14 @@ export default defineConfig({
     coverage: {
       provider: 'c8',
       all: true,
+      exclude: [
+        'index.d.ts',
+        '.eslintrc.cjs',
+        'vite.config.ts',
+        'src/vite-env.d.ts',
+        '*.{ts}',
+        'src/index.tsx',
+      ],
     },
     setupFiles: ['./src/setupTests.ts'],
   },
