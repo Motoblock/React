@@ -29,7 +29,7 @@ export const validatePrice = (value: string | undefined) => {
   }
 };
 
-export const validateSex = (value: string) => {
+export const validateSex = (value: string | null) => {
   if (value === null) {
     return messagesErrors[3].sex?.sexValue;
   }
@@ -43,7 +43,7 @@ export const validateBreeds = (value: string) => {
 
 export const validateCatterys = (value: string) => {
   if (value === '') {
-    return messagesErrors[4].cattery?.catteryValue;
+    return messagesErrors[5].cattery?.catteryValue;
   }
 };
 
@@ -68,7 +68,7 @@ export const validateOwner = (value: string) => {
   }
 };
 
-export const validateImage = (files: FileList) => {
+export const validateImage = (files: FileList | null) => {
   if (!files) {
     return messagesErrors[6].image?.imageValue;
   }

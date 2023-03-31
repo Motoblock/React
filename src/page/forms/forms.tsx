@@ -5,7 +5,7 @@ import classForm from './forms.module.css';
 export const Forms = () => {
   return (
     <>
-      <div className={classForm.nameField}>Enter the cats details</div>
+      <h2 className={classForm.nameField}>Enter the cats details</h2>
       <AddCard />
     </>
   );

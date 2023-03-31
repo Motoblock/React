@@ -1,6 +1,6 @@
 import React from 'react';
 
-function About() {
+export function About() {
   return (
     <>
       <h2>About</h2>
@@ -12,5 +12,3 @@ function About() {
     </>
   );
 }
-
-export default About;
