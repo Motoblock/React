@@ -11,6 +11,7 @@ import { ICardCatProps } from '../card/types';
 import { Card } from '../card/Card';
 import { ErrorMessage } from '../error/Error';
 import { messagesErrors, propsInput } from './dataError';
+import { datediff } from './../../util/dateFunction';
 import { CARD_SHOW_TIME } from './../../util/vriable';
 import {
   validationName,
@@ -37,7 +38,6 @@ export function AddCard() {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const arr: ICardCatProps[] = cards;
     let imageLink = '';
     const selecteds = [...[...data.image]];
     selecteds.forEach((i) => (imageLink = URL.createObjectURL(i)));
@@ -45,7 +45,7 @@ export function AddCard() {
     const newCard: ICardCatProps = {
       id: data.length,
       name: data.name,
-      age: data.month,
+      age: datediff(new Date(data.age)),
       breed: data.breed,
       sex: data.sex,
       price: Number(data.price),
@@ -53,6 +53,7 @@ export function AddCard() {
       counts: Number(data.counts),
       catterys: data.catterys,
     };
+    const arr: ICardCatProps[] = cards;
     arr.push(newCard);
     setConfirm(true);
     setTimeout(() => setConfirm(false), CARD_SHOW_TIME);

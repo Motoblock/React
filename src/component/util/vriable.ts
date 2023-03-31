@@ -1,1 +1,1 @@
-export const CARD_SHOW_TIME = 4000;
+export const CARD_SHOW_TIME = 14000;
