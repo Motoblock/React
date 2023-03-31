@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Search } from './../../component/UI/input/Search';
-import { CardList } from '../../component/CardList';
+import { CardList } from './../../component/CardList';
 import catsData from './../../assets/data/cats';
 import './../main/main.module.css';
 

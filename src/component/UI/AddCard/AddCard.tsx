@@ -96,30 +96,31 @@ export function AddCard() {
         <label className={classForm.label} htmlFor="fieldSex">
           Gender{' '}
         </label>
-        Male{' '}
-        <input
-          id="fieldSex"
-          value="0"
-          type="radio"
-          {...register('sex', {
-            validate: {
-              validateSex: (value) => validateSex(value),
-            },
-          })}
-        />
-        &nbsp;Female{' '}
-        <input
-          id="fieldSex"
-          value="1"
-          type="radio"
-          {...register('sex', {
-            validate: {
-              validateSex: (value) => validateSex(value),
-            },
-          })}
-        />
-        {errors.sex && <ErrorMessage message={`${errors.sex.message}`} />}
-        <br />
+        <div className={classForm.formBlock}>
+          Male{' '}
+          <input
+            id="fieldSex"
+            value="0"
+            type="radio"
+            {...register('sex', {
+              validate: {
+                validateSex: (value) => validateSex(value),
+              },
+            })}
+          />
+          &nbsp;Female{' '}
+          <input
+            id="fieldSex"
+            value="1"
+            type="radio"
+            {...register('sex', {
+              validate: {
+                validateSex: (value) => validateSex(value),
+              },
+            })}
+          />
+          {errors.sex && <ErrorMessage message={`${errors.sex.message}`} />}
+        </div>
         <label className={classForm.label} htmlFor="fieldBreed">
           Breed
         </label>
@@ -160,20 +161,21 @@ export function AddCard() {
           })}
         />
         {errors.catterys && <ErrorMessage message="Specify the catterys" />}
-        <label className={classForm.label} htmlFor="fielsCounts"></label>
-        <input
-          id="fielsCounts"
-          value={0}
-          type="checkbox"
-          {...register('counts', {
-            validate: {
-              validateOwner: (value) => validateOwner(value),
-            },
-          })}
-        />{' '}
-        I am the owner of cat
-        {errors.counts && <ErrorMessage message={`${errors.counts.message}`} />}
-        <br />
+        <div className={classForm.formBlock}>
+          <label className={classForm.label} htmlFor="fielsCounts"></label>
+          <input
+            id="fielsCounts"
+            value={0}
+            type="checkbox"
+            {...register('counts', {
+              validate: {
+                validateOwner: (value) => validateOwner(value),
+              },
+            })}
+          />{' '}
+          I am the owner of cat
+          {errors.counts && <ErrorMessage message={`${errors.counts.message}`} />}
+        </div>
         <label className={classForm.label} htmlFor="fielsImage">
           Photo of cats
         </label>

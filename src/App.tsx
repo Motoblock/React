@@ -1,9 +1,10 @@
 import React from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
+
 import { Main } from './page/main/main';
-import { Forms } from './page/forms/forms';
+import { Forms } from './page/forms/Forms';
 import About from './page/about/about';
-import Page404 from './page/404/404';
+import { Page404 } from './page/404/404';
 import { Layout } from './component/Layout';
 
 const router = createBrowserRouter([
