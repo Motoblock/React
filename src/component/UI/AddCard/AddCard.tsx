@@ -12,7 +12,7 @@ import { Card } from '../card/Card';
 import { ErrorMessage } from '../error/Error';
 import { messagesErrors, propsInput } from './dataError';
 import { datediff } from './../../util/dateFunction';
-import { CARD_SHOW_TIME } from './../../util/vriable';
+import { CARD_SHOW_TIME } from '../../util/variable';
 import {
   validationName,
   validatePrice,

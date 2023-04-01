@@ -1,35 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import { Modal } from './../Modal/Modal';
+import { Button } from '../button/Button';
 import stCard from './card.module.css';
-import mail from './../../../assets/images/male-logo.png';
-import woman from './../../../assets/images/woman-logo.png';
 import { ICardCatProps } from './types';
+import { SERVER_LINK } from '../../util/variable';
 
-export class Card extends React.Component<ICardCatProps, { value: string }> {
-  render() {
-    const link = `${this.props.image}`;
-    let sex = (
-      <img src={mail} title={this.props.description} alt={`Кот по кличке ` + this.props.name} />
-    );
-    if (this.props.sex == 1)
-      sex = (
-        <img src={woman} title={this.props.description} alt={`Кот по кличке ` + this.props.name} />
-      );
-    return (
-      <div data-testid="card" className={stCard.cards__card}>
-        <div className={stCard.card__images}>
-          <img src={link} title={this.props.description} alt={`Кот по кличке ` + this.props.name} />
-        </div>
-        <div className={stCard.card__text}>
-          <div className={stCard.card__age}>
-            {this.props.age} месяцев {sex}
-          </div>
-          <h3 className={stCard.card__name}>{this.props.name}</h3>
-          <div className={stCard.card__breed}>{this.props.breed}</div>
-          <div className={stCard.card__cattery}>{this.props.catterys}</div>
-          <div className={stCard.card__price}>{this.props.price} ₽</div>
-        </div>
+export const Card = (props: ICardCatProps) => {
+  const [show, setShow] = useState(false);
+
+  const imageLink = `${SERVER_LINK}/${props.image}`;
+  return (
+    <div data-testid="card" className={stCard.cards__card}>
+      <div className={stCard.card__images}>
+        <img src={imageLink} title={props.description} alt={`Кот по кличке ` + props.name} />
       </div>
-    );
-  }
-}
+      <div className={stCard.card__text}>
+        <h3 className={stCard.card__name}>{props.name}</h3>
+        <div className={stCard.card__breed}>{props.breed}</div>
+        <div className={stCard.card__price}>{props.price} ₽</div>
+      </div>
+      <Button onClick={() => setShow(true)}>
+        {show && <Modal {...props} />}
+        {'Подробнее'}
+      </Button>
+    </div>
+  );
+};

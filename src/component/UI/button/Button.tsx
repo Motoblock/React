@@ -4,6 +4,7 @@ import btn from './Button.module.css';
 
 interface IPropsButton {
   children?: ReactNode;
+  onClick?: () => void;
 }
 
 export const Button = ({ children, ...props }: IPropsButton) => {
