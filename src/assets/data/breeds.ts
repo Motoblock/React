@@ -1,39 +1,36 @@
-export interface IBreedsData {
-  breed: number;
-  name: string;
-}
+import { ISelectsData } from './../../component/UI/select/type';
 
-export const breedsData: Array<IBreedsData> = [
+export const breedsData: Array<ISelectsData> = [
   {
-    breed: 1,
+    id: 1,
     name: 'Абиссинская',
   },
   {
-    breed: 2,
+    id: 2,
     name: 'Американский бобтейл',
   },
   {
-    breed: 3,
+    id: 3,
     name: 'Aмериканский кёрл',
   },
   {
-    breed: 4,
+    id: 4,
     name: 'Америк. короткошерстная',
   },
   {
-    breed: 5,
+    id: 5,
     name: 'Бенгальская',
   },
   {
-    breed: 6,
+    id: 6,
     name: 'Британская',
   },
   {
-    breed: 7,
+    id: 7,
     name: 'Гималайская',
   },
   {
-    breed: 8,
+    id: 8,
     name: 'Мейнкун',
   },
 ];

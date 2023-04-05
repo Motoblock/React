@@ -6,6 +6,7 @@ import { AddCard } from './AddCard';
 import { Card } from './../card/Card';
 import { ICardCatProps } from './../card/types';
 import { datediff } from './../../util/dateFunction';
+import catsData from '../../../assets/data/cats';
 
 describe('Add Card tests:', () => {
   it('Render Form component', () => {
@@ -37,6 +38,11 @@ describe('Add Card tests:', () => {
 
     window.URL.createObjectURL = vi.fn();
     const file = window.URL.createObjectURL;
+
+    Object.defineProperty(file, 'type', {
+      value: 'image/png',
+      writable: false,
+    });
 
     await act(async () => {
       fireEvent.change(name, { target: { value: 'Vasy' } });
@@ -84,7 +90,15 @@ describe('Add Card tests:', () => {
         counts: Number(counts.value),
       },
     ];
-    render(<Card {...newCard[0]} />);
+    newCard.map((card, index) => {
+      return <Card key={index} {...card} />;
+    });
+    expect(newCard.length).toBe(1);
+    expect(screen.getByText('Британская')).toBeInTheDocument();
+  });
+
+  it('Card mounted', () => {
+    render(<Card key={1} {...catsData[0]} />);
     expect(screen.getByTestId('card')).toBeInTheDocument();
   });
 });

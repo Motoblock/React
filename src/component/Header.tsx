@@ -2,31 +2,37 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import logo from './../assets/images/logo.png';
+import meow from './../assets/cat-meow.mp3';
 
+function menu(path: string) {
+  switch (path) {
+    case '/':
+      return 'On the main page, the main thing is cats';
+    case '/about':
+      return 'About page';
+    case '/forms':
+      return 'New cats are born on the form page';
+    default:
+      return 'The page 404 is very sad';
+  }
+}
 export const Header = () => {
   const [title, setTitles] = useState('');
 
   useEffect(() => {
-    switch (location.pathname) {
-      case '/':
-        setTitles('On the main page, the main thing is cats');
-        break;
-      case '/about':
-        setTitles('About page');
-        break;
-      case '/forms':
-        setTitles('New cats are born on the form page');
-        break;
-      default:
-        setTitles('The page 404 is very sad');
-    }
+    setTitles(menu(location.pathname));
   }, []);
+
+  const audio = new Audio(meow);
+  const start = () => {
+    audio.play();
+  };
 
   return (
     <>
       <div className="header__container">
         <div className="header__logo">
-          <img src={logo} alt="logo" />
+          <img src={logo} title="Clik me!" onClick={start} alt="logo" />
         </div>
         <nav className="header__menu">
           <NavLink onClick={() => setTitles('Main page')} className="item" to="/">

@@ -2,62 +2,57 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Search } from './../../component/UI/input/Search';
 import { CardList } from './../../component/CardList';
-import { ICardCatProps } from './../../component/UI/card/types';
-import { SERVER_LINK } from '../../component/util/variable';
-import './../main/main.module.css';
+import { getCatFetch } from './../../api/api';
+import style from './../main/main.module.css';
+import { Button } from './../../component/UI/button/Button';
+import { DELAY } from './../../component/util/variable';
 
 export function Main() {
   const [search, setSearch] = useState(localStorage.getItem('searchInput') || '');
   const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const inputRef = useRef(search);
 
   const getData = async () => {
-    const response = await fetch(`${SERVER_LINK}/catalog`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-    if (!response.ok) throw new Error('Could not fetch the data from the resourse');
-
-    const data = await response.json();
-    return data;
+    setIsLoading(true);
+    setTimeout(async () => {
+      try {
+        const data = await getCatFetch(search);
+        setItems(data);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+      }
+    }, DELAY);
   };
 
   useEffect(() => {
-    getData().then((data) => {
-      setItems(data);
-    });
-  }, []);
-
-  useEffect(() => {
-    inputRef.current = search;
-
-    // getData().then((data) => {
-    //   // console.log('data', data);
-    //   setItems(data);
-    // });
-    // console.log(items);
-    setItems(
-      items.filter((el: ICardCatProps) => {
-        console.log('el[0]', el);
-        el.breed.toLowerCase().includes(search.toLowerCase());
-      })
-    );
-  }, [search]);
-
-  useEffect(() => {
+    setIsLoading(true);
+    getData();
     return () => {
-      localStorage.setItem('searchInput', inputRef.current);
+      localStorage.setItem('searchInput', inputRef.current || '');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    inputRef.current = e.target.value;
+  };
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    getData();
+  };
 
   return (
     <>
       <h2>Find yourself a fuzzy</h2>
-      <Search value={search} onChange={(e) => setSearch(e.target.value)} />
-      <CardList items={items} />
+      <form onSubmit={handleFormSubmit} className={style.form_search}>
+        <Search value={search} onChange={handelChange} />
+        <Button> Search </Button>
+      </form>
+      {isLoading ? <div className="message_wait loader"></div> : <CardList items={items} />}
     </>
   );
 }

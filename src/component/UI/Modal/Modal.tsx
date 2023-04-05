@@ -5,16 +5,25 @@ import mail from './../../../assets/images/male-logo.png';
 import woman from './../../../assets/images/woman-logo.png';
 import './Modal.modules.css';
 
-function genderImg(sex: number, name: string) {
+export function genderImg(sex: number, name: string) {
   if (sex === 1) return <img src={mail} alt={`Кот по кличке ` + name} />;
   return <img src={woman} alt={`Кот по кличке ` + name} />;
 }
 
-export const Modal = (props: ICardCatProps) => {
+interface IPropsModel {
+  props: ICardCatProps;
+  onClose?: () => void | undefined;
+}
+
+export const Modal = ({ onClose, props }: IPropsModel) => {
   return (
-    <div id={`${props.id}`} className="modal">
-      <div className="modal_wrapper">
+    <div id={`${props.id}`} className="modal" onClick={onClose}>
+      <div className="modal_wrapper" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal_header">{props.name}</h2>
+        <span className="modal-close" onClick={onClose}>
+          {' '}
+          X{' '}
+        </span>
 
         <div className="modal_content">
           <div className="modal_foto">
@@ -22,10 +31,11 @@ export const Modal = (props: ICardCatProps) => {
           </div>
           <div className="modal_description">
             <p>
-              Age: {props.age} месяцев {genderImg(props.sex, props.name)}
+              Возраст: {props.age} месяцев {genderImg(props.sex, props.name)}
             </p>
-            <p>Breed: {props.breed}</p>
-            <p>Catterys: {props.catterys}</p>
+            <p>Порода: {props.breed}</p>
+            <p>Питомник: {props.catterys}</p>
+            <p>Цена: {props.price} ₽</p>
             <p className="field_description">{props.description}</p>
           </div>
         </div>
