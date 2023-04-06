@@ -6,10 +6,11 @@ import { getCatFetch } from './../../api/api';
 import style from './../main/main.module.css';
 import { Button } from './../../component/UI/button/Button';
 import { DELAY } from './../../component/util/variable';
+import { ICardCatProps } from './../../component/UI/card/types';
 
 export function Main() {
   const [search, setSearch] = useState(localStorage.getItem('searchInput') || '');
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<ICardCatProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const inputRef = useRef(search);
 
