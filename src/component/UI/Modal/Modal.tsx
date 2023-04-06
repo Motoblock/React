@@ -25,7 +25,7 @@ export const Modal = ({ onClose, props }: IPropsModel) => {
           </div>
           <div className="modal_description">
             <p>
-              Возраст: {props[0].age} месяцев {genderImg(props[0].sex, props[0].name)}
+              Возраст: {props[0].age} месяцев {genderImg(props[0].sex)}
             </p>
             <p>Порода: {props[0].breed}</p>
             <p>Питомник: {props[0].catterys}</p>

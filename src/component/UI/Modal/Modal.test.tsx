@@ -29,10 +29,7 @@ describe('Error tests:', () => {
   });
 
   it('genderImg return link on image', () => {
-    const gender = genderImg(1, 'Vasy');
-    if (gender)
-      expect('<img src={woman} alt={"Кот по кличке Vasy"} />').toBe(
-        '<img src={woman} alt={"Кот по кличке Vasy"} />'
-      );
+    const gender = genderImg(1);
+    if (gender) expect('<img src={woman} alt={"муж"} />').toBe('<img src={woman} alt={"муж"} />');
   });
 });
