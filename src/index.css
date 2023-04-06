@@ -32,15 +32,14 @@ html, body{
   box-sizing: content-box;
 }
 h1 {
-  font-size: 18px;
+  font-size: 24px;
 }
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   overflow: hidden;
-  position: relative;
-  margin: 5px;
+  position: relative; 
 }
 .header {
   width: 100%;
@@ -51,8 +50,21 @@ h1 {
   display: flex;
   justify-content: space-between;
   padding: 3px 0;
+  margin: 10px;  
+  font-size: 34px;
 }
 
+.header__name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F3F4F5;
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: #C8945D;
+  height: 80px;
+  font-size: 24px;
+}
 .header__container {
   display: flex;
   align-items: center;
@@ -61,31 +73,23 @@ h1 {
 .item {
   color: #C8945D;
   font-weight: 500;
+  margin: 10px;
+  text-decoration: none;
 }
 
 .active {
   color: #ff9a1c;
   cursor: default;
 }
-.nav {
-  display: flex;
-  align-items: center;
-}
 
-.nav .item  {
-  margin: 10px;
-  text-decoration: none;
-  font-size: 34px;
-}
-
-.nav .item:hover {
+.item:hover {
   color: #ff9a1c;
 }
 .main {
   width: 100%;
   left: 0;
   top: 0;
-  padding: 44px 0 80px 0;
+  padding: 44px 20px 80px 20px;
 }
 .cards__box {
   display: flex;

@@ -1,66 +1,48 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import logo from './../assets/images/logo.png';
 
-interface IProps {
-  [title: string]: string;
-}
+export const Header = () => {
+  const [title, setTitles] = useState('');
 
-class Header extends Component<IProps, { title: string }> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      title: '',
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     switch (location.pathname) {
       case '/':
-        this.setState({ title: 'Main page' });
+        setTitles('On the main page, the main thing is cats');
         break;
       case '/about':
-        this.setState({ title: 'About page' });
+        setTitles('About page');
         break;
       case '/forms':
-        this.setState({ title: 'Forms page' });
+        setTitles('New cats are born on the form page');
         break;
       default:
-        this.setState({ title: 'page 404' });
+        setTitles('The page 404 is very sad');
     }
-  }
+  }, []);
 
-  render() {
-    return (
+  return (
+    <>
       <div className="header__container">
         <div className="header__logo">
           <img src={logo} alt="logo" />
-          <h1>{this.state.title}</h1>
         </div>
-        <div className="header__menu">
-          <nav className="nav">
-            <NavLink onClick={() => this.setState({ title: 'Main page' })} className="item" to="/">
-              Main
-            </NavLink>
-            <NavLink
-              onClick={() => this.setState({ title: 'About page' })}
-              className="item"
-              to="/about"
-            >
-              About
-            </NavLink>
-            <NavLink
-              onClick={() => this.setState({ title: 'Forms page' })}
-              className="item"
-              to="/forms"
-            >
-              Forms
-            </NavLink>
-          </nav>
-        </div>
+        <nav className="header__menu">
+          <NavLink onClick={() => setTitles('Main page')} className="item" to="/">
+            Main
+          </NavLink>
+          <NavLink onClick={() => setTitles('About page')} className="item" to="/about">
+            About
+          </NavLink>
+          <NavLink onClick={() => setTitles('Forms page')} className="item" to="/forms">
+            Forms
+          </NavLink>
+        </nav>
       </div>
-    );
-  }
-}
-
-export default Header;
+      <div className="header__name">
+        <h1>{title}</h1>
+      </div>
+    </>
+  );
+};

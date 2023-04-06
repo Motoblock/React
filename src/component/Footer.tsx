@@ -2,7 +2,7 @@ import React from 'react';
 import github from './../assets/images/github.png';
 import rsschool from './../assets/images/rs_school_js.svg';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <div className="footer__container">
       <div className="footer__items">
@@ -21,5 +21,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;

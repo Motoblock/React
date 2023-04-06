@@ -1,16 +1,12 @@
 import React from 'react';
 import { AddCard } from '../../component/UI/AddCard/AddCard';
-import classForm from './form.module.css';
+import classForm from './forms.module.css';
 
-export class Forms extends React.Component {
-  render() {
-    return (
-      <>
-        <div className={classForm.nameField}>Enter the cats details</div>
-        <div className={classForm.formCard}>
-          <AddCard />
-        </div>
-      </>
-    );
-  }
-}
+export const Forms = () => {
+  return (
+    <>
+      <h2 className={classForm.nameField}>Enter the cats details</h2>
+      <AddCard />
+    </>
+  );
+};

@@ -2,15 +2,15 @@ import React from 'react';
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import { About } from './about';
+import { Page404 } from './404';
 
 describe('main', () => {
   it('Renders heading', () => {
-    render(<About />);
+    render(<Page404 />);
     expect(
       screen.getByRole('heading', {
-        level: 2,
+        level: 1,
       })
-    ).toHaveTextContent('About');
+    ).toHaveTextContent('Not found cats (((');
   });
 });

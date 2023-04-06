@@ -3,8 +3,8 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { Main } from './page/main/main';
 import { Forms } from './page/forms/forms';
-import About from './page/about/about';
-import Page404 from './page/404/404';
+import { About } from './page/about/about';
+import { Page404 } from './page/404/404';
 import { Layout } from './component/Layout';
 
 export const router = createBrowserRouter([

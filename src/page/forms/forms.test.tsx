@@ -2,15 +2,15 @@ import React from 'react';
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import { About } from './about';
+import { Forms } from './forms';
 
 describe('main', () => {
   it('Renders heading', () => {
-    render(<About />);
+    render(<Forms />);
     expect(
       screen.getByRole('heading', {
         level: 2,
       })
-    ).toHaveTextContent('About');
+    ).toHaveTextContent('Enter the cats details');
   });
 });

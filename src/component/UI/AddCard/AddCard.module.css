@@ -1,5 +1,20 @@
+.formInput {
+  width: 100%;
+  margin: 2px 0px 10px 0;
+  padding: 10px;
+  border: 1px solid rgb(200, 148, 93);
+  font-size: 18px;
+}
+
 .formCard {
-    max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.formBlock {
+  margin: 5px 0 10px 0;
 }
 .label {
   font-weight: 600;
@@ -17,4 +32,5 @@
 .allRight {
   color: #ff9a1c;
   font-size: 28px;
+  text-align: center;
 }
