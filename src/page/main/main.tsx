@@ -29,9 +29,6 @@ export function Main() {
   useEffect(() => {
     setIsLoading(true);
     getData();
-    return () => {
-      localStorage.setItem('searchInput', inputRef.current || '');
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -42,6 +39,7 @@ export function Main() {
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    localStorage.setItem('searchInput', inputRef.current || '');
     getData();
   };
 

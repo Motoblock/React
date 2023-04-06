@@ -1,19 +1,22 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { Modal, genderImg } from './Modal';
+import { Modal } from './Modal';
+import { genderImg } from './../../util/gender';
 import { ICardCatProps } from './../card/types';
 
 describe('Error tests:', () => {
-  const mockProps: ICardCatProps = {
-    id: 1,
-    name: 'Бенедикт',
-    breed: 'Абиссинская',
-    price: 2000,
-    sex: 0,
-    age: 10,
-    catterys: 'DonLeon',
-  };
+  const mockProps: Array<ICardCatProps> = [
+    {
+      id: 1,
+      name: 'Бенедикт',
+      breed: 'Абиссинская',
+      price: 2000,
+      sex: 0,
+      age: 10,
+      catterys: 'DonLeon',
+    },
+  ];
   beforeEach(() => {
     render(<Modal props={mockProps} />);
   });

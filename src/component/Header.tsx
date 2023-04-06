@@ -7,7 +7,7 @@ import meow from './../assets/cat-meow.mp3';
 function menu(path: string) {
   switch (path) {
     case '/':
-      return 'On the main page, the main thing is cats';
+      return 'On the main page, try clicking on the logo';
     case '/about':
       return 'About page';
     case '/forms':
