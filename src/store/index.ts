@@ -1,8 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cardSlise from './cardSlice';
 
-export default configureStore({
+import hiderSlice from './headerSlice';
+import cardSlice from './cardSlice';
+import modalSlice from './modalSlice';
+import formSlice from './formSlice';
+
+export const store = configureStore({
   reducer: {
-    card: cardSlise,
+    header: hiderSlice,
+    card: cardSlice,
+    modal: modalSlice,
+    form: formSlice,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

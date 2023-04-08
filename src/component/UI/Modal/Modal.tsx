@@ -4,12 +4,18 @@ import { ICardCatProps } from './../card/types';
 import { SERVER_LINK } from '../../util/variable';
 import { genderImg } from './../../util/gender';
 import './Modal.modules.css';
+import { closeModalOne } from './../../../store/modalSlice';
+import { useAppDispatch } from './../../../store/hooksRedux';
 interface IPropsModel {
   props: ICardCatProps[];
-  onClose?: () => void | undefined;
 }
 
-export const Modal = ({ onClose, props }: IPropsModel) => {
+export const Modal = ({ props }: IPropsModel) => {
+  const dispatch = useAppDispatch();
+  const onClose = () => {
+    dispatch(closeModalOne());
+  };
+
   return (
     <div id={`${props[0].id}`} className="modal" onClick={onClose}>
       <div className="modal_wrapper" onClick={(e) => e.stopPropagation()}>

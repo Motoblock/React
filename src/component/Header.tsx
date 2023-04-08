@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from './../store/hooksRedux';
+import { swowHeader } from './../store/headerSlice';
 import logo from './../assets/images/logo.png';
 import meow from './../assets/cat-meow.mp3';
 
@@ -17,11 +19,16 @@ function menu(path: string) {
   }
 }
 export const Header = () => {
-  const [title, setTitles] = useState('');
+  const dispatch = useAppDispatch();
+  const title = useAppSelector((state) => state.header.title);
+
+  const setTitles = (path: string) => {
+    dispatch(swowHeader(menu(path)));
+  };
 
   useEffect(() => {
-    setTitles(menu(location.pathname));
-  }, []);
+    dispatch(swowHeader(menu(location.pathname)));
+  }, [dispatch]);
 
   const audio = new Audio(meow);
   const start = () => {
@@ -35,13 +42,13 @@ export const Header = () => {
           <img src={logo} title="Clik me!" onClick={start} alt="logo" />
         </div>
         <nav className="header__menu">
-          <NavLink onClick={() => setTitles('Main page')} className="item" to="/">
+          <NavLink onClick={() => setTitles('/')} className="item" to="/">
             Main
           </NavLink>
-          <NavLink onClick={() => setTitles('About page')} className="item" to="/about">
+          <NavLink onClick={() => setTitles('/about')} className="item" to="/about">
             About
           </NavLink>
-          <NavLink onClick={() => setTitles('Forms page')} className="item" to="/forms">
+          <NavLink onClick={() => setTitles('/forms')} className="item" to="/forms">
             Forms
           </NavLink>
         </nav>

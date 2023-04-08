@@ -4,11 +4,7 @@ import classes from './Input.module.css';
 import { IInputProps } from './interface';
 
 export const Search = (props: IInputProps) => {
-  const {
-    onChange,
-    value,
-    placeholder = 'Укажите параметр поиска (имя, породу, цену возраст)...',
-  } = props;
+  const { onChange, value, placeholder = 'Укажите параметр поиска (имя, породу, цену)' } = props;
 
   return (
     <div className="search">

@@ -1,36 +1,63 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from 'store';
+
 import { ICardCatProps } from './../component/UI/card/types';
+import { getCatFetch } from './../api/api';
 
 interface ICardState {
   search: string;
   items: ICardCatProps[];
   isLoading: boolean;
-  modal: ICardCatProps | null;
-  isShow: boolean;
+  isError: boolean;
 }
 
 const initialState: ICardState = {
   search: '',
   items: [],
   isLoading: false,
-  modal: null,
-  isShow: false,
+  isError: false,
 };
 
-const cardSlise = createSlice({
+export const fetchCards = createAsyncThunk(
+  'card/fetchCards',
+  async function (_, { rejectWithValue, getState }) {
+    const state = getState() as RootState;
+    try {
+      const response = await getCatFetch(`${state.card.search}`);
+
+      return await response.json();
+    } catch (err) {
+      if (!err) {
+        throw new Error('Server Error!');
+      }
+      return rejectWithValue(err);
+    }
+  }
+);
+
+const cardSlice = createSlice({
   name: 'card',
   initialState,
   reducers: {
-    handelChange(state, action) {
-      console.log('handelChange', state);
-      console.log(action);
+    setSearch(state, action) {
+      state.search = action.payload;
     },
-    handleFormSubmit(state, action) {
-      console.log('handleFormSubmit states', state);
-      console.log('handleFormSubmit action', action);
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCards.pending, (state) => {
+      state.isLoading = true;
+      state.isError = false;
+    });
+    builder.addCase(fetchCards.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.items = action.payload;
+    });
+    builder.addCase(fetchCards.rejected, (state) => {
+      state.isLoading = false;
+      state.isError = true;
+    });
   },
 });
 
-export const { handelChange, handleFormSubmit } = cardSlise.actions;
-export default cardSlise.reducer;
+export const { setSearch } = cardSlice.actions;
+export default cardSlice.reducer;

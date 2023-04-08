@@ -1,6 +1,8 @@
 import React from 'react';
 import { vi } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 import { messagesErrors } from './../UI/AddCard/dataError';
 import {
@@ -14,6 +16,15 @@ import {
   validateImage,
 } from './validation';
 import { AddCard } from './../../component/UI/AddCard/AddCard';
+
+const mockStore = configureStore([]);
+const initialState = {
+  form: {
+    isConfirm: false,
+    cards: [],
+  },
+};
+const store = mockStore(initialState);
 
 describe('main', () => {
   it('validation Name', () => {
@@ -68,7 +79,11 @@ describe('main', () => {
     let mes = validateImage(null);
     expect(mes).toBe(messagesErrors[6].image?.imageValue);
 
-    const form = render(<AddCard />);
+    const form = render(
+      <Provider store={store}>
+        <AddCard />
+      </Provider>
+    );
     const image = form.getByLabelText(/Photo of cats/) as HTMLInputElement;
 
     window.URL.createObjectURL = vi.fn();

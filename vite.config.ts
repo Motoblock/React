@@ -17,6 +17,7 @@ export default defineConfig({
         '.eslintrc.cjs',
         'vite.config.ts',
         'src/vite-env.d.ts',
+        'hooksRedux.ts',
         '*.{ts}',
         'src/index.tsx',
       ],

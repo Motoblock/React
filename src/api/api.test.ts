@@ -1,15 +1,16 @@
 import { vi } from 'vitest';
-import { getCatFetch } from './api';
+import { getCatFetch, getCatOne } from './api';
+import { MOCK_PROPS } from './../component/util/variable';
 
 it('calls the right route', async () => {
-  const mockCat = { id: 1, name: 'Бенедикт', breed: 'Абиссинская', price: 2000 };
-  const Respons = Promise.resolve(mockCat);
+  const Respons = Promise.resolve(MOCK_PROPS);
   const mockFetch = Promise.resolve({
     json: () => Respons,
   });
   global.fetch = vi.fn().mockImplementation(() => mockFetch);
   vi.spyOn(global, 'fetch');
   await getCatFetch('');
+
   expect(global.fetch).toHaveBeenCalledTimes(1);
 });
 
@@ -19,9 +20,8 @@ it('calls the right route', async () => {
   expect(getCatFetch).toHaveReturned();
 });
 
-it('getDataCat returns a product object', async () => {
-  const mockCat = { id: 1, name: 'Бенедикт', breed: 'Абиссинская', price: 2000 };
-  const Respons = Promise.resolve(mockCat);
+it('getCatFetch returns a product object', async () => {
+  const Respons = Promise.resolve(MOCK_PROPS);
   const mockFetch = Promise.resolve({
     json: () => Respons,
   });
@@ -29,8 +29,28 @@ it('getDataCat returns a product object', async () => {
 
   const cat = await getCatFetch('');
   expect(typeof cat).toBe('object');
-  expect(cat).toHaveProperty('id');
-  expect(cat).toHaveProperty('name');
-  expect(cat).toHaveProperty('breed');
-  expect(cat).toHaveProperty('price');
+});
+
+it('getCatOne returns a product object', async () => {
+  const mockCat = {
+    id: 1,
+    name: 'Бенедикт',
+    breed: 'Абиссинская',
+    price: 2000,
+    cattery: 'Tany Mur',
+    description:
+      'Ласковый и игривый, умный и красивый. Любит играть, спать и кушать. Тянуться к человеку, очень любознателен. Будет всегда рядом, хороший помощник и верный друг.',
+  };
+  const Respons = Promise.resolve(mockCat);
+  const mockFetchOne = Promise.resolve({
+    json: () => Respons,
+  });
+
+  global.fetch = vi.fn().mockImplementation(() => mockFetchOne);
+
+  const cat = await getCatOne(1);
+  const json = await cat.json();
+
+  expect(typeof cat).toBe('object');
+  expect(json).toEqual(mockCat);
 });
