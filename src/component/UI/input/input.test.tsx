@@ -10,14 +10,16 @@ describe('Test Search component', () => {
   const onChange = vi.fn();
 
   const prop: IInputProps = {
-    placeholder: 'Укажите породу...',
+    placeholder: 'Укажите параметр поиска (имя, породу, цену)',
     value: testValue,
     onChange: onChange,
   };
 
   it('renders Search component', () => {
     render(<Search {...prop} />);
-    expect(screen.getByPlaceholderText(/Укажите породу.../i)).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Укажите параметр поиска (имя, породу, цену)')
+    ).toBeInTheDocument();
   });
   it('Renders Search component with data from localStorage', () => {
     localStorage.setItem('searchInput', testValue);

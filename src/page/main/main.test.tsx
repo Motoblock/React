@@ -15,7 +15,7 @@ describe('main', () => {
   it('Renders heading', () => {
     render(<Main />);
     expect(
-      screen.getAllByPlaceholderText('Укажите параметр поиска (имя, породу, цену возраст)...')
+      screen.getAllByPlaceholderText('Укажите параметр поиска (имя, породу, цену)')
     ).toBeTruthy();
     expect(screen.getByText('Find yourself a fuzzy'));
   });
