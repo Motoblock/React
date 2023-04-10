@@ -9,6 +9,7 @@
     font-size: 28px;
 }
 
-.active {
-    background: #1e977d;
+.cardBtn:hover {
+    cursor: pointer;
+    background: #C8945D;
 }

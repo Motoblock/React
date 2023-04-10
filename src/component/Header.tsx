@@ -39,7 +39,7 @@ export const Header = () => {
     <>
       <div className="header__container">
         <div className="header__logo">
-          <img src={logo} title="Clik me!" onClick={start} alt="logo" />
+          <img src={logo} title="Click me!" onClick={start} alt="logo" />
         </div>
         <nav className="header__menu">
           <NavLink onClick={() => setTitles('/')} className="item" to="/">
