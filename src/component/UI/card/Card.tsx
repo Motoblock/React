@@ -38,7 +38,7 @@ export const Card = (props: ICardCatProps) => {
       <div className={stCard.card__text}>
         {isShowField && (
           <div className={stCard.card__age}>
-            {props.age} месяцев {genderImg(props.sex)}
+            {props.age} месяцев {genderImg(Number(props.sex))}
           </div>
         )}
         <h3 className={stCard.card__name}>{props.name}</h3>
