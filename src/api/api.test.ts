@@ -8,7 +8,7 @@ it('calls the right route', async () => {
     json: () => Respons,
   });
   global.fetch = vi.fn().mockImplementation(() => mockFetch);
-  vi.spyOn(global, 'fetch');
+
   await getCatFetch('');
 
   expect(global.fetch).toHaveBeenCalledTimes(1);
@@ -53,4 +53,8 @@ it('getCatOne returns a product object', async () => {
 
   expect(typeof cat).toBe('object');
   expect(json).toEqual(mockCat);
+  expect(json).toHaveProperty('id');
+  expect(json).toHaveProperty('name');
+  expect(json).toHaveProperty('breed');
+  expect(json).toHaveProperty('price');
 });

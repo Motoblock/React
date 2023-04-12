@@ -21,8 +21,7 @@ export const Modal = ({ props }: IPropsModel) => {
       <div className="modal_wrapper" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal_header">{props[0].name}</h2>
         <span className="modal-close" onClick={onClose}>
-          {' '}
-          X{' '}
+          X
         </span>
 
         <div className="modal_content">
@@ -31,7 +30,7 @@ export const Modal = ({ props }: IPropsModel) => {
           </div>
           <div className="modal_description">
             <p>
-              Возраст: {props[0].age} месяцев {genderImg(props[0].sex)}
+              Возраст: {props[0].age} месяцев {genderImg(Number(props[0].sex))}
             </p>
             <p>Порода: {props[0].breed}</p>
             <p>Питомник: {props[0].catterys}</p>
