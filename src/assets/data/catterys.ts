@@ -1,59 +1,56 @@
-export interface ICatterysData {
-  cattery: number;
-  name: string;
-}
+import { ISelectsData } from './../../component/UI/select/type';
 
-export const catterysData: Array<ICatterysData> = [
+export const catterysData: Array<ISelectsData> = [
   {
-    cattery: 1,
+    id: 1,
     name: 'Blossom Paradise',
   },
   {
-    cattery: 2,
+    id: 2,
     name: 'Compliment',
   },
   {
-    cattery: 3,
+    id: 3,
     name: 'DonLeon',
   },
   {
-    cattery: 4,
+    id: 4,
     name: 'Fluffy Company',
   },
   {
-    cattery: 5,
+    id: 5,
     name: 'Gramelissa',
   },
   {
-    cattery: 6,
+    id: 6,
     name: 'Helios',
   },
   {
-    cattery: 7,
+    id: 7,
     name: 'Legocat',
   },
   {
-    cattery: 8,
+    id: 8,
     name: 'Liebecoon',
   },
   {
-    cattery: 9,
+    id: 9,
     name: 'Nabisben',
   },
   {
-    cattery: 10,
+    id: 10,
     name: 'Noble Birth',
   },
   {
-    cattery: 11,
+    id: 11,
     name: 'Sunrise',
   },
   {
-    cattery: 12,
+    id: 12,
     name: 'Sharavi',
   },
   {
-    cattery: 13,
+    id: 13,
     name: 'Tany Mur',
   },
 ];

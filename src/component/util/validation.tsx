@@ -1,5 +1,6 @@
 import { messagesErrors } from './../UI/AddCard/dataError';
 import { datediff } from './dateFunction';
+import { MAX_PRICE } from './variable';
 
 export const validationName = (value: string | undefined) => {
   if (!value) {
@@ -24,7 +25,7 @@ export const validatePrice = (value: string | undefined) => {
   if (Number(value) < 1) {
     return messagesErrors[2].price?.priceValue;
   }
-  if (value && Number(value) > 1000000) {
+  if (value && Number(value) > MAX_PRICE) {
     return messagesErrors[2].price?.priceMax;
   }
 };
@@ -49,10 +50,6 @@ export const validateCatterys = (value: string) => {
 
 export const validateAge = (value: string) => {
   if (!value) {
-    return messagesErrors[1].age?.ageValue;
-  }
-  const correct = value.match(/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/);
-  if (correct && correct[0] !== value) {
     return messagesErrors[1].age?.ageValue;
   }
 

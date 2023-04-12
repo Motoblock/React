@@ -10,9 +10,9 @@ import classForm from './AddCard.module.css';
 import { ICardCatProps } from '../card/types';
 import { Card } from '../card/Card';
 import { ErrorMessage } from '../error/Error';
-import { messagesErrors, propsInput } from './dataError';
+import { messagesErrors } from './dataError';
 import { datediff } from './../../util/dateFunction';
-import { CARD_SHOW_TIME } from './../../util/vriable';
+import { CARD_SHOW_TIME } from '../../util/variable';
 import {
   validationName,
   validatePrice,
@@ -71,7 +71,7 @@ export function AddCard() {
         <Input
           id="fieldName"
           type="text"
-          placeholder={propsInput[0].placeholder}
+          placeholder="Specify the cat's nickname"
           {...register('name', {
             required: `${messagesErrors[0].name?.nameValue}`,
             validate: {
@@ -134,7 +134,7 @@ export function AddCard() {
             },
           })}
         />
-        {errors.breed && <ErrorMessage message="Specify the breed" />}
+        {errors.breed && <ErrorMessage message={`${errors.breed.message}`} />}
         <label className={classForm.label} htmlFor="fieldPrice">
           Price
         </label>

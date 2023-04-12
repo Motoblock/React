@@ -1,4 +1,6 @@
-import { describe, it } from 'vitest';
+import React from 'react';
+import { vi } from 'vitest';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 
 import { messagesErrors } from './../UI/AddCard/dataError';
 import {
@@ -11,6 +13,7 @@ import {
   validateOwner,
   validateImage,
 } from './validation';
+import { AddCard } from './../../component/UI/AddCard/AddCard';
 
 describe('main', () => {
   it('validation Name', () => {
@@ -25,9 +28,12 @@ describe('main', () => {
   });
 
   it('validation age', () => {
-    let mes = validateAge('');
+    const mes = validateAge('');
     expect(mes).toBe(messagesErrors[1].age?.ageValue);
-    mes = validateAge(Date());
+  });
+
+  it('validation age ', () => {
+    const mes = validateAge('2023-04-04');
     expect(mes).toBe(messagesErrors[1].age?.ageSmall);
   });
 
@@ -58,8 +64,37 @@ describe('main', () => {
     expect(mes).toBe(messagesErrors[7].counts?.countsValue);
   });
 
-  it('validation image', () => {
-    const mes = validateImage(null);
+  it('validation image', async () => {
+    let mes = validateImage(null);
     expect(mes).toBe(messagesErrors[6].image?.imageValue);
+
+    const form = render(<AddCard />);
+    const image = form.getByLabelText(/Photo of cats/) as HTMLInputElement;
+
+    window.URL.createObjectURL = vi.fn();
+    const file = window.URL.createObjectURL;
+
+    mes = validateImage(image.files);
+    expect(mes).toBe(messagesErrors[6].image?.imageValue);
+
+    Object.defineProperty(file, 'accept', {
+      value: 'text/plain',
+      writable: false,
+    });
+    Object.defineProperty(file, 'type', {
+      value: 'file',
+      writable: false,
+    });
+
+    await act(async () => {
+      fireEvent.change(image, { target: { files: [file] } });
+    });
+    const submit = screen.getByRole('button', { name: 'Create card' });
+    expect(submit).toBeTruthy();
+
+    submit.click();
+
+    mes = validateImage(image.files);
+    expect(mes).toBe(messagesErrors[6].image?.imageFormat);
   });
 });

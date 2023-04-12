@@ -2,30 +2,55 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Search } from './../../component/UI/input/Search';
 import { CardList } from './../../component/CardList';
-import catsData from './../../assets/data/cats';
-import './../main/main.module.css';
+import { getCatFetch } from './../../api/api';
+import style from './../main/main.module.css';
+import { Button } from './../../component/UI/button/Button';
+import { DELAY } from './../../component/util/variable';
 
 export function Main() {
   const [search, setSearch] = useState(localStorage.getItem('searchInput') || '');
-  const [items, setItems] = useState(catsData);
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const inputRef = useRef(search);
 
-  useEffect(() => {
-    inputRef.current = search;
-    setItems(catsData.filter((el) => el.breed.toLowerCase().includes(search.toLowerCase())));
-  }, [search]);
+  const getData = async () => {
+    setIsLoading(true);
+    setTimeout(async () => {
+      try {
+        const data = await getCatFetch(search);
+        setItems(data);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+      }
+    }, DELAY);
+  };
 
   useEffect(() => {
-    return () => {
-      localStorage.setItem('searchInput', inputRef.current);
-    };
+    setIsLoading(true);
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    inputRef.current = e.target.value;
+  };
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    localStorage.setItem('searchInput', inputRef.current || '');
+    getData();
+  };
 
   return (
     <>
       <h2>Find yourself a fuzzy</h2>
-      <Search value={search} onChange={(e) => setSearch(e.target.value)} />
-      <CardList items={items} />
+      <form onSubmit={handleFormSubmit} className={style.form_search}>
+        <Search value={search} onChange={handelChange} />
+        <Button> Search </Button>
+      </form>
+      {isLoading ? <div className="message_wait loader"></div> : <CardList items={items} />}
     </>
   );
 }
