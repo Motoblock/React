@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { menu } from './../component/util/menu';
 
 interface ICardState {
   title: string;
 }
 
 const initialState: ICardState = {
-  title: '',
+  title: menu('/'),
 };
 
 const headerSlice = createSlice({

@@ -5,18 +5,34 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { router } from './router';
 import './index.css';
+import ReactDOM from 'react-dom';
 
-// const root = document.getElementById('root') as HTMLElement;
+const root = document.getElementById('root') as HTMLElement;
+// const renderMethod = root ? ReactDOM.render : ReactDOM.hydrate;
 // if (root && root.innerHTML !== '')
-hydrateRoot(
-  document.getElementById('root') as HTMLElement,
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>
-);
+if (root) {
+  hydrateRoot(
+    root,
+    <React.StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </React.StrictMode>
+  );
+} else {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </React.StrictMode>,
+    root
+  );
+}
 
+// function renderMethod(arg0: JSX.Element, root: HTMLElement) {
+//     throw new Error('Function not implemented.');
+// }
 // import React from 'react';
 // import { hydrateRoot } from 'react-dom/client';
 // // import { RouterProvider } from 'react-router-dom';

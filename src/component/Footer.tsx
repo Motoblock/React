@@ -4,7 +4,7 @@ import rsschool from './../assets/images/rs_school_js.svg';
 
 export const Footer = () => {
   return (
-    <div className="footer__container">
+    <div className="footer footer__container">
       <div className="footer__items">
         <div className="footer__item">
           <a href="https://motoblock.github.io/" target="_blank" rel="noreferrer">

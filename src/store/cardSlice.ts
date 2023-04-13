@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from 'store';
+import { RootState } from './index';
 
 import { ICardCatProps } from './../component/UI/card/types';
 import { getCatFetch } from './../api/api';
