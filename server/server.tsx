@@ -1,17 +1,17 @@
 import path from 'path';
 import fs from 'fs';
 
-import React from 'react';
+// import React from 'react';
 import express from 'express';
-import ReactDOMServer from 'react-dom/server';
+// import ReactDOMServer from 'react-dom/server';
 
-import Footer from '../src/Footer';
+// import Footer from './src/Footer';
 
 const PORT = process.env.PORT || 3006;
 const app = express();
 
 app.get('/', (req, res) => {
-  const app = ReactDOMServer.renderToString(<Footer />);
+  // const app = ReactDOMServer.renderToString(<Footer />);
 
   const indexFile = path.resolve('./build/index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {

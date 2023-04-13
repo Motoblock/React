@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
     "lib": ["dom", "esnext", "dom.iterable"],
     "jsx": "react",
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -13,8 +13,11 @@
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": "./src",
-    "resolveJsonModule": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "resolveJsonModule": true
   },
-  "include": ["./src/**/*", "styled.d.ts"]
+  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "esm": true
+  }
 }
