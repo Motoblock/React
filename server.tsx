@@ -4,13 +4,15 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
 
+import cors from 'cors';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = 3000;
 
 async function createServer() {
   const app = express();
-
+  app.use(cors());
   const vite = await createViteServer({
     server: { middlewareMode: true },
     appType: 'custom',

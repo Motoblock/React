@@ -3,11 +3,11 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import ssr from 'vite-plugin-ssr/plugin';
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), ssr()],
+  plugins: [react(), createHtmlPlugin()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -24,6 +24,14 @@ export default defineConfig({
       ],
     },
     setupFiles: ['./src/setupTests.ts'],
+  },
+  build: {
+    minify: false,
+  },
+  resolve: {
+    alias: {
+      '@/': '/src/',
+    },
   },
   envDir: './',
 });
