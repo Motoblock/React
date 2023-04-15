@@ -32,15 +32,9 @@ async function createServer() {
           res.write(parts[0]);
           pipe(res);
         },
-        onShellError(err: Error) {
-          console.error(err);
-        },
         onAllReady() {
           res.write(parts[1]);
           res.end();
-        },
-        onError(err: Error) {
-          console.error(err);
         },
       });
     } catch (e) {

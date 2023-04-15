@@ -1,7 +1,7 @@
 export function menu(path: string) {
   switch (path) {
     case '/':
-      return 'On the main page, try clicking on the logo';
+      return 'On the main page';
     case '/about':
       return 'About page';
     case '/forms':
