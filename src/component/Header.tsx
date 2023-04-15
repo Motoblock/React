@@ -18,6 +18,7 @@ function menu(path: string) {
       return 'The page 404 is very sad';
   }
 }
+
 export const Header = () => {
   const dispatch = useAppDispatch();
   const title = useAppSelector((state) => state.header.title);

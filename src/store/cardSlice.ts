@@ -25,7 +25,7 @@ export const fetchCards = createAsyncThunk(
     try {
       const response = await getCatFetch(`${state.card.search}`);
 
-      return await response.json();
+      return response.json();
     } catch (err) {
       if (!err) {
         throw new Error('Server Error!');
