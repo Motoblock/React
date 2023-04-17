@@ -15,10 +15,14 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .tsx --ext .ts",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "coverage:e2e": "npx nyc report --reporter=text-summary",
+    "cypress": "cypress open"
   },
   "dependencies": {
+    "@cypress/code-coverage": "^3.10.4",
     "@reduxjs/toolkit": "^1.9.3",
+    "@types/cypress__code-coverage": "^3.10.0",
     "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
     "express": "4.18.2",
@@ -44,7 +48,9 @@
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "@vitejs/plugin-react": "^3.1.0",
+    "@vitest/coverage-istanbul": "^0.30.1",
     "@vitest/coverage-c8": "^0.29.2",
+    "cypress": "^12.10.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
@@ -64,6 +70,6 @@
     "typescript-plugin-css-modules": "^4.2.3",
     "vite": "^4.1.0",
     "vite-plugin-eslint": "^1.8.1",
-    "vitest": "^0.29.2"
+    "vitest": "^0.30.0"
   }
 }
