@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "esnext", "dom.iterable"],
+    "types": ["cypress", "node"],
     "jsx": "react",
     "target": "esnext",
     "module": "esnext",
