@@ -13,7 +13,7 @@ export function Main() {
 
   const error = <h2 className="message_wait loader">I&apos;m sorry, but Error server (((</h2>;
 
- useEffect(() => {
+  useEffect(() => {
     if (items.length === 0) dispatch(fetchCards());
   }, [dispatch, items.length]);
 
