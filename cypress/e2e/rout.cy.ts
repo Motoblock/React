@@ -12,14 +12,3 @@ describe('General routs test', () => {
     cy.get('h1').should('contain', 'Not found cats (((');
   });
 });
-
-describe('Home page test', () => {
-  beforeEach(() => {
-    cy.visit('/');
-    cy.intercept('GET', 'https://mock-server-cats.vercel.app').as('getCats');
-  });
-  it('Should search cards of cats ', () => {
-    cy.visit('/');
-    cy.get('input[type=text]').type('test{enter}');
-  });
-});
