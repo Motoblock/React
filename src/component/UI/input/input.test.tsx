@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { vi } from 'vitest';
+import { expect, vi } from 'vitest';
 
 import { IInputProps } from './interface';
 import { Search } from './Search';

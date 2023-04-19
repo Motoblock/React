@@ -1,3 +1,4 @@
+import { it, describe, expect } from 'vitest';
 import { MOCK_PROPS } from './../component/util/variable';
 import modalSlice, { clickModalOne, fetchModal } from './modalSlice';
 

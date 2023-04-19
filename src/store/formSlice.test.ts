@@ -1,5 +1,6 @@
+import { it, describe, expect } from 'vitest';
 import { MOCK_PROPS } from './../component/util/variable';
-import formSlice, { addNewCard, confirm } from './formSlice';
+import formSlice, { addNewCard } from './formSlice';
 
 const initialState = {
   isConfirm: false,

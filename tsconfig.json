@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "esnext", "dom.iterable"],
-    "types": ["vite/client", "@testing-library/jest-dom"],
+    "types": ["vite/client", "@testing-library/jest-dom", "cypress"],
     "jsx": "react",
     "target": "esnext",
     "module": "esnext",

@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
+/// <reference types="cypress" />
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -30,7 +31,6 @@ export default defineConfig({
         'src/vite-env.d.ts',
         'hooksRedux.ts',
         '*.{ts}',
-        'src/index.tsx',
       ],
     },
     setupFiles: ['./src/setupTests.ts'],

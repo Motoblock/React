@@ -1,3 +1,4 @@
+import { it, describe, expect } from 'vitest';
 import { MOCK_PROPS } from './../component/util/variable';
 import cardSlice, { setSearch, fetchCards } from './cardSlice';
 
@@ -24,6 +25,8 @@ describe('Card Slice', () => {
   it('should set rejected', () => {
     const action = { type: fetchCards.rejected, payload: MOCK_PROPS };
     const result = cardSlice(initialState, action);
-    expect(result.items).toEqual([]);
+    expect(result.isLoading).toEqual(false);
+    expect(result.isError).toEqual(true);
+    // expect(result.items).toEqual([]);
   });
 });
