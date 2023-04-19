@@ -16,8 +16,8 @@ describe('Card Slice', () => {
 
   it('should set search', () => {
     const search = 'Cats';
-    const action = { type: setSearch.type, payload: search };
-    const result = cardSlice(initialState, action);
+    const actionc = { type: setSearch.type, payload: search };
+    const result = cardSlice(initialState, actionc);
     expect(result.search).toEqual(search);
   });
 

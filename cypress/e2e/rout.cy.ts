@@ -11,4 +11,8 @@ describe('General routs test', () => {
     cy.visit('/404');
     cy.get('h1').should('contain', 'Not found cats (((');
   });
+
+  it('Mock test', () => {
+    expect(true).to.equal(true);
+  });
 });

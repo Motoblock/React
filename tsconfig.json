@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "esnext", "dom.iterable"],
-    "types": ["cypress", "node"],
+    "types": ["vite/client", "@testing-library/jest-dom"],
     "jsx": "react",
     "target": "esnext",
     "module": "esnext",
@@ -16,9 +16,11 @@
     "baseUrl": "./",
     "resolveJsonModule": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
+  "include": ["vite.config.ts", "./src/**/*", "styled.d.ts"],
   "exclude": ["node_modules"],
   "ts-node": {
-    "esm": true
+    "esm": true,
+    "transpileOnly": true,
+    "experimentalSpecifierResolution": "node"
   }
 }

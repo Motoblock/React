@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { it, expect, vi } from 'vitest';
 import { getCatFetch, getCatOne } from './api';
 import { MOCK_PROPS } from './../component/util/variable';
 

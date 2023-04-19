@@ -1,4 +1,5 @@
 import React from 'react';
+import { it, describe, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
@@ -7,7 +8,9 @@ import { Card } from './Card';
 import { MOCK_PROPS } from './../../util/variable';
 
 const mockStore = configureStore([]);
-
+/**
+ * @vitest-environment jsdom
+ */
 describe('Card tests:', () => {
   const initialState = {
     card: {
