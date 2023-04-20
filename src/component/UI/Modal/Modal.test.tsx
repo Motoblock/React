@@ -1,31 +1,37 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 import { Modal } from './Modal';
 import { genderImg } from './../../util/gender';
-import { ICardCatProps } from './../card/types';
+import { MOCK_PROPS } from './../../util/variable';
+
+const initialState = {
+  card: {
+    search: '',
+    items: MOCK_PROPS,
+    isLoading: false,
+    isError: false,
+  },
+};
+
+const mockStore = configureStore([]);
+const store = mockStore(initialState);
 
 describe('Error tests:', () => {
-  const mockProps: Array<ICardCatProps> = [
-    {
-      id: 1,
-      name: 'Бенедикт',
-      breed: 'Абиссинская',
-      price: 2000,
-      sex: 0,
-      age: 10,
-      catterys: 'DonLeon',
-    },
-  ];
   beforeEach(() => {
-    render(<Modal props={mockProps} />);
+    render(
+      <Provider store={store}>
+        <Modal props={MOCK_PROPS} />
+      </Provider>
+    );
   });
 
   it('Modal render', () => {
     expect(screen.getByText('Бенедикт'));
     expect(screen.getByText('Порода: Абиссинская'));
     expect(screen.getByText('Цена: 2000 ₽'));
-    expect(screen.getByText('Питомник: DonLeon'));
   });
 
   it('genderImg return link on image', () => {

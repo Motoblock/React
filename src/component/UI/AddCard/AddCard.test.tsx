@@ -1,6 +1,8 @@
 import React from 'react';
 import { vi } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 import { AddCard } from './AddCard';
 import { Card } from './../card/Card';
@@ -8,24 +10,49 @@ import { ICardCatProps } from './../card/types';
 import { datediff } from './../../util/dateFunction';
 import catsData from '../../../assets/data/cats';
 
+const mockStore = configureStore([]);
+const initialState = {
+  form: {
+    isConfirm: false,
+    cards: [],
+  },
+};
+const store = mockStore(initialState);
+
 describe('Add Card tests:', () => {
   it('Render Form component', () => {
-    const form = render(<AddCard />);
+    const form = render(
+      <Provider store={store}>
+        <AddCard />
+      </Provider>
+    );
     expect(form).toBeTruthy();
   });
 
   it('should contain name element', () => {
-    const form = render(<AddCard />);
+    const form = render(
+      <Provider store={store}>
+        <AddCard />
+      </Provider>
+    );
     expect(form.getByRole('textbox', { name: 'Cats nickname' })).toBeInTheDocument();
   });
 
   it('should have a disabled submit button at initialization', () => {
-    const form = render(<AddCard />);
+    const form = render(
+      <Provider store={store}>
+        <AddCard />
+      </Provider>
+    );
     expect(form.getByRole('button', { name: 'Create card' })).toBeInTheDocument();
   });
 
   it('confirm input to form', async () => {
-    const form = render(<AddCard />);
+    const form = render(
+      <Provider store={store}>
+        <AddCard />
+      </Provider>
+    );
 
     const name = form.getByRole('textbox', { name: 'Cats nickname' }) as HTMLInputElement;
     const age = form.getByLabelText('Date of birth') as HTMLInputElement;
@@ -90,15 +117,24 @@ describe('Add Card tests:', () => {
         counts: Number(counts.value),
       },
     ];
-    newCard.map((card, index) => {
-      return <Card key={index} {...card} />;
+    newCard.map((card) => {
+      return (
+        // eslint-disable-next-line react/jsx-key
+        <Provider store={store}>
+          <Card key={card.id} {...card} />
+        </Provider>
+      );
     });
     expect(newCard.length).toBe(1);
     expect(screen.getByText('Британская')).toBeInTheDocument();
   });
 
   it('Card mounted', () => {
-    render(<Card key={1} {...catsData[0]} />);
+    render(
+      <Provider store={store}>
+        <Card key={1} {...catsData[0]} />
+      </Provider>
+    );
     expect(screen.getByTestId('card')).toBeInTheDocument();
   });
 });

@@ -4,19 +4,24 @@ import { ICardCatProps } from './../card/types';
 import { SERVER_LINK } from '../../util/variable';
 import { genderImg } from './../../util/gender';
 import './Modal.modules.css';
+import { closeModalOne } from './../../../store/modalSlice';
+import { useAppDispatch } from './../../../store/hooksRedux';
 interface IPropsModel {
   props: ICardCatProps[];
-  onClose?: () => void | undefined;
 }
 
-export const Modal = ({ onClose, props }: IPropsModel) => {
+export const Modal = ({ props }: IPropsModel) => {
+  const dispatch = useAppDispatch();
+  const onClose = () => {
+    dispatch(closeModalOne());
+  };
+
   return (
     <div id={`${props[0].id}`} className="modal" onClick={onClose}>
       <div className="modal_wrapper" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal_header">{props[0].name}</h2>
         <span className="modal-close" onClick={onClose}>
-          {' '}
-          X{' '}
+          X
         </span>
 
         <div className="modal_content">
@@ -25,7 +30,7 @@ export const Modal = ({ onClose, props }: IPropsModel) => {
           </div>
           <div className="modal_description">
             <p>
-              Возраст: {props[0].age} месяцев {genderImg(props[0].sex)}
+              Возраст: {props[0].age} месяцев {genderImg(Number(props[0].sex))}
             </p>
             <p>Порода: {props[0].breed}</p>
             <p>Питомник: {props[0].catterys}</p>

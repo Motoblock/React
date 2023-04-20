@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button } from '../button/Button';
@@ -12,6 +12,8 @@ import { Card } from '../card/Card';
 import { ErrorMessage } from '../error/Error';
 import { messagesErrors } from './dataError';
 import { datediff } from './../../util/dateFunction';
+import { addNewCard, confirm } from './../../../store/formSlice';
+import { useAppDispatch, useAppSelector } from './../../../store/hooksRedux';
 import { CARD_SHOW_TIME } from '../../util/variable';
 import {
   validationName,
@@ -25,8 +27,9 @@ import {
 } from './../../util/validation';
 
 export function AddCard() {
-  const [cards, setCards] = useState<ICardCatProps[]>([]);
-  const [confirm, setConfirm] = useState(false);
+  const dispatch = useAppDispatch();
+  const { isConfirm, cards } = useAppSelector((state) => state.form);
+
   const {
     register,
     handleSubmit,
@@ -53,17 +56,15 @@ export function AddCard() {
       counts: Number(data.counts),
       catterys: data.catterys,
     };
-    const arr: ICardCatProps[] = cards;
-    arr.push(newCard);
-    setConfirm(true);
-    setTimeout(() => setConfirm(false), CARD_SHOW_TIME);
-    setCards(arr);
+
+    dispatch(addNewCard(newCard));
+    setTimeout(() => dispatch(confirm()), CARD_SHOW_TIME);
     reset();
   };
 
   return (
     <>
-      {confirm && <p className={classForm.allRight}>The card was created successfully</p>}
+      {isConfirm && <p className={classForm.allRight}>The card was created successfully</p>}
       <form className={classForm.formCard} id="formCard" onSubmit={handleSubmit(onSubmit)}>
         <label className={classForm.label} htmlFor="fieldName">
           Cats nickname

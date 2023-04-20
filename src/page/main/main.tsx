@@ -1,46 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 
+import { fetchCards, setSearch } from './../../store/cardSlice';
 import { Search } from './../../component/UI/input/Search';
 import { CardList } from './../../component/CardList';
-import { getCatFetch } from './../../api/api';
 import style from './../main/main.module.css';
 import { Button } from './../../component/UI/button/Button';
-import { DELAY } from './../../component/util/variable';
+import { useAppDispatch, useAppSelector } from './../../store/hooksRedux';
 
 export function Main() {
-  const [search, setSearch] = useState(localStorage.getItem('searchInput') || '');
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const inputRef = useRef(search);
+  const dispatch = useAppDispatch();
+  const { isLoading, isError, search, items } = useAppSelector((state) => state.card);
 
-  const getData = async () => {
-    setIsLoading(true);
-    setTimeout(async () => {
-      try {
-        const data = await getCatFetch(search);
-        setItems(data);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-      }
-    }, DELAY);
-  };
+  const error = <h2 className="message_wait loader">I&apos;m sorry, but Error server (((</h2>;
 
   useEffect(() => {
-    setIsLoading(true);
-    getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (items.length === 0) dispatch(fetchCards());
+  }, [dispatch, items.length]);
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    inputRef.current = e.target.value;
+    const searchFieldValue = e.target.value;
+    dispatch(setSearch(searchFieldValue));
   };
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    localStorage.setItem('searchInput', inputRef.current || '');
-    getData();
+    dispatch(fetchCards());
   };
 
   return (
@@ -50,7 +34,8 @@ export function Main() {
         <Search value={search} onChange={handelChange} />
         <Button> Search </Button>
       </form>
-      {isLoading ? <div className="message_wait loader"></div> : <CardList items={items} />}
+      {isLoading && <div className="message_wait loader"></div>}
+      {isError ? error : <CardList />}
     </>
   );
 }

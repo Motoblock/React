@@ -1,24 +1,29 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 import { Card } from './Card';
-import { ICardCatProps } from './../card/types';
+import { MOCK_PROPS } from './../../util/variable';
+
+const mockStore = configureStore([]);
 
 describe('Card tests:', () => {
-  const mockProps: Array<ICardCatProps> = [
-    {
-      id: 1,
-      name: 'Бенедикт',
-      breed: 'Абиссинская',
-      price: 2000,
-      sex: 0,
-      age: 10,
-      catterys: 'DonLeon',
+  const initialState = {
+    card: {
+      search: '',
+      items: MOCK_PROPS,
+      isLoading: false,
+      isError: false,
     },
-  ];
-
+  };
+  const store = mockStore(initialState);
   beforeEach(() => {
-    render(<Card {...mockProps[0]} />);
+    render(
+      <Provider store={store}>
+        <Card {...MOCK_PROPS[0]} />
+      </Provider>
+    );
   });
 
   it('Card mounted', () => {
