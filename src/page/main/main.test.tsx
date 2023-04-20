@@ -38,6 +38,5 @@ describe('main', () => {
         <CardList />
       </Provider>
     );
-    expect(screen.getAllByTestId('card')).toHaveLength(1);
-  });
+    expect(screen.getAllByTestId('card')).toHaveLength(1); 
 });

@@ -27,10 +27,6 @@ export const Header = () => {
     dispatch(swowHeader(menu(path)));
   };
 
-  useEffect(() => {
-    dispatch(swowHeader(menu(location.pathname)));
-  }, [dispatch]);
-
   const audio = new Audio(meow);
   const start = () => {
     audio.play();
@@ -38,9 +34,9 @@ export const Header = () => {
 
   return (
     <>
-      <div className="header__container">
+     <div className="header__container">
         <div className="header__logo">
-          <img src={logo} title="Click me!" onClick={start} alt="logo" />
+          <img src={logo} title="me-u!" alt="logo" />
         </div>
         <nav className="header__menu">
           <NavLink onClick={() => setTitles('/')} className="item" to="/">
