@@ -1,6 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from './index';
+import * as toolkitRaw from '@reduxjs/toolkit';
+const { createSlice, createAsyncThunk } = (
+  'default' in toolkitRaw ? toolkitRaw.default : toolkitRaw
+) as typeof toolkitRaw;
 
+import { RootState } from './index';
 import { ICardCatProps } from './../component/UI/card/types';
 import { getCatOne } from './../api/api';
 

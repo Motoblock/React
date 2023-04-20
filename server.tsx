@@ -6,15 +6,13 @@ import express from 'express';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const isTest = process.env.VITEST;
-
+console.log(__dirname);
+const isProd = !process.env.NODE_ENV;
+console.log(isProd);
+const resolve = (p: string) => path.resolve(__dirname, p);
 const PORT = 3000;
 
-export async function createServer(
-  // root = process.cwd(),
-  isProd = process.env.NODE_ENV === 'production'
-) {
-  const resolve = (p: string) => path.resolve(__dirname, p);
+export async function createServer() {
   let vite: ViteDevServer;
   const app = express();
 
@@ -25,7 +23,7 @@ export async function createServer(
     });
     app.use(vite.middlewares);
   } else {
-    // app.use((await import('compression')).default());
+    app.use((await import('compression')).default());
     app.use(
       (await import('serve-static')).default(resolve('dist/client'), {
         index: false,
@@ -48,12 +46,9 @@ export async function createServer(
         // @ts-ignore
         render = (await import('./dist/server/entry-server.js')).render;
       }
-      // let modelPage = await readFile(path.resolve(__dirname, 'index.html'), 'utf-8');
-      // modelPage = await vite.transformIndexHtml(url, modelPage);
 
       const parts = modelPage.split('<!--ssr-body-->');
 
-      // const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const { pipe } = await render(url, {
         onShellReady() {
           res.write(parts[0]);
@@ -74,12 +69,12 @@ export async function createServer(
   return { app };
 }
 
-if (!isTest) {
-  createServer()
-    .then(({ app }) =>
-      app.listen(PORT, () => {
-        console.log('http://localhost:' + PORT);
-      })
-    )
-    .catch((e) => console.error(e));
-}
+// if (!isProd) {
+createServer()
+  .then(({ app }) =>
+    app.listen(PORT, () => {
+      console.log('http://localhost:' + PORT);
+    })
+  )
+  .catch((e) => console.error(e));
+// }

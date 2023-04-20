@@ -16,6 +16,14 @@ export default defineConfig({
       requireEnv: false,
     }),
   ],
+  build: {
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        minifyInternalExports: false,
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
@@ -31,9 +39,6 @@ export default defineConfig({
       ],
     },
     setupFiles: ['./src/setupTests.ts'],
-  },
-  build: {
-    minify: false,
   },
   resolve: {
     alias: {
