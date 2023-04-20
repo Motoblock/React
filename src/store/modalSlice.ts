@@ -18,22 +18,16 @@ const initialState: IModalState = {
   isError: false,
 };
 
-export const fetchModal = createAsyncThunk(
-  'modal/fetchModal',
-  async function (_, { rejectWithValue, getState }) {
-    const state = getState() as RootState;
-    try {
-      const response = await getCatOne(state.modal.id);
+export const fetchModal = createAsyncThunk('modal/fetchModal', async function (_, { getState }) {
+  const state = getState() as RootState;
+  try {
+    const response = await getCatOne(state.modal.id);
 
-      return await response.json();
-    } catch (err) {
-      if (!err) {
-        throw new Error('Server Error!');
-      }
-      return rejectWithValue(err);
-    }
+    return await response.json();
+  } catch (err) {
+    throw new Error('Server Error!');
   }
-);
+});
 
 const modalSlice = createSlice({
   name: 'modal',

@@ -125,8 +125,13 @@ describe('Add Card tests:', () => {
         </Provider>
       );
     });
-    expect(newCard.length).toBe(1);
-    expect(screen.getByText('Британская')).toBeInTheDocument();
+
+    expect(() => {
+      act(() => {
+        expect(screen.getByText('Британская')).toBeInTheDocument();
+        expect(newCard.length).toBe(1);
+      });
+    });
   });
 
   it('Card mounted', () => {

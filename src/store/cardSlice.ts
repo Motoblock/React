@@ -18,22 +18,16 @@ const initialState: ICardState = {
   isError: false,
 };
 
-export const fetchCards = createAsyncThunk(
-  'card/fetchCards',
-  async function (_, { rejectWithValue, getState }) {
-    const state = getState() as RootState;
-    try {
-      const response = await getCatFetch(`${state.card.search}`);
+export const fetchCards = createAsyncThunk('card/fetchCards', async function (_, { getState }) {
+  const state = getState() as RootState;
+  try {
+    const response = await getCatFetch(`${state.card.search}`);
 
-      return response.json();
-    } catch (err) {
-      if (!err) {
-        throw new Error('Server Error!');
-      }
-      return rejectWithValue(err);
-    }
+    return response.json();
+  } catch (err) {
+    throw new Error('Server Error!');
   }
-);
+});
 
 const cardSlice = createSlice({
   name: 'card',

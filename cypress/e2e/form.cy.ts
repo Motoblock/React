@@ -14,7 +14,6 @@ describe('Forms page test', () => {
     cy.get('#fielsCatterys').select('Compliment');
     cy.get('#fielsCounts').check();
     cy.get('#formCard').submit();
-    // cy.get('[data-testid="card"]').should('be.visible');
   });
 
   it('Mock test', () => {

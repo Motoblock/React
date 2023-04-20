@@ -17,10 +17,10 @@ export const Modal = ({ props }: IPropsModel) => {
   };
 
   return (
-    <div id={`${props[0].id}`} className="modal" onClick={onClose}>
+    <div id={`${props[0].id}`} className="modal" data-testid="modal" onClick={onClose}>
       <div className="modal_wrapper" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal_header">{props[0].name}</h2>
-        <span className="modal-close" onClick={onClose}>
+        <span className="modal-close" data-testid="close" onClick={onClose}>
           X
         </span>
 

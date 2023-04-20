@@ -22,11 +22,24 @@ describe('Card Slice', () => {
     expect(result.search).toEqual(search);
   });
 
+  it('should set pending', () => {
+    const action = { type: fetchCards.pending, payload: MOCK_PROPS };
+    const result = cardSlice(initialState, action);
+    expect(result.isLoading).toEqual(true);
+    expect(result.isError).toEqual(false);
+  });
+
+  it('should set fulfilled', () => {
+    const action = { type: fetchCards.fulfilled, payload: MOCK_PROPS };
+    const result = cardSlice(initialState, action);
+    expect(result.isLoading).toEqual(false);
+    expect(result.items.length).toBe(1);
+  });
+
   it('should set rejected', () => {
     const action = { type: fetchCards.rejected, payload: MOCK_PROPS };
     const result = cardSlice(initialState, action);
     expect(result.isLoading).toEqual(false);
     expect(result.isError).toEqual(true);
-    // expect(result.items).toEqual([]);
   });
 });

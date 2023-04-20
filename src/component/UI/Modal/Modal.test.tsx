@@ -39,4 +39,10 @@ describe('Error tests:', () => {
     const gender = genderImg(1);
     if (gender) expect('<img src={woman} alt={"муж"} />').toBe('<img src={woman} alt={"муж"} />');
   });
+
+  it('Modal render', () => {
+    expect(screen.getByText('Бенедикт'));
+    const showModalButton = screen.getByTestId('close');
+    showModalButton.click();
+  });
 });

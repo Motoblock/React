@@ -26,5 +26,19 @@ describe('Modal Slice', () => {
     const action = { type: fetchModal.rejected, payload: MOCK_PROPS };
     const result = modalSlice(initialState, action);
     expect(result.item).toEqual(null);
+    expect(result.isShow).toEqual(false);
+    expect(result.isError).toEqual(true);
+  });
+  it('should set pending', () => {
+    const action = { type: fetchModal.pending, payload: MOCK_PROPS };
+    const result = modalSlice(initialState, action);
+    expect(result.isShow).toEqual(false);
+    expect(result.isError).toEqual(false);
+  });
+
+  it('should set fulfilled', () => {
+    const action = { type: fetchModal.fulfilled, payload: MOCK_PROPS };
+    const result = modalSlice(initialState, action);
+    expect(result.isShow).toEqual(true);
   });
 });

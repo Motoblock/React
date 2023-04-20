@@ -1,23 +1,20 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
-/// <reference types="cypress" />
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { createHtmlPlugin } from 'vite-plugin-html';
-// import tsconfigPaths from 'vite-tsconfig-paths';
-// import istanbul from 'vite-plugin-istanbul';
+import istanbul from 'vite-plugin-istanbul';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     createHtmlPlugin(),
-    // tsconfigPaths(),
-    // istanbul({
-    //   cypress: true,
-    //   requireEnv: false,
-    // }),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
   ],
   test: {
     globals: true,

@@ -13,7 +13,7 @@ describe('Home page test', () => {
     cy.contains('Порода');
     cy.contains('Питомник');
     cy.contains('Цена');
-    cy.get('[class="modal-close"]').click();
+    cy.get('[data-testid="close"]').click();
   });
 
   it('Mock test', () => {
