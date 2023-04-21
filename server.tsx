@@ -6,9 +6,8 @@ import express from 'express';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-console.log(__dirname);
 const isProd = !process.env.NODE_ENV;
-console.log(isProd);
+
 const resolve = (p: string) => path.resolve(__dirname, p);
 const PORT = 3000;
 
@@ -69,7 +68,6 @@ export async function createServer() {
   return { app };
 }
 
-// if (!isProd) {
 createServer()
   .then(({ app }) =>
     app.listen(PORT, () => {
@@ -77,4 +75,3 @@ createServer()
     })
   )
   .catch((e) => console.error(e));
-// }

@@ -1,7 +1,7 @@
 import * as toolkitRaw from '@reduxjs/toolkit';
-const { configureStore } = (
-  'default' in toolkitRaw ? toolkitRaw.default : toolkitRaw
-) as typeof toolkitRaw;
+type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
+const { configureStore } = ((toolkitRaw as TypeToolkitRaw).default ??
+  toolkitRaw) as typeof toolkitRaw;
 
 import hiderSlice from './headerSlice';
 import cardSlice from './cardSlice';
