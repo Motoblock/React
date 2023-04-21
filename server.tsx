@@ -3,6 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import process from 'process';
 import express from 'express';
+import compression from 'compression';
+import serveStatic from 'serve-static';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,9 +24,9 @@ export async function createServer() {
     });
     app.use(vite.middlewares);
   } else {
-    app.use((await import('compression')).default());
+    app.use(compression());
     app.use(
-      (await import('serve-static')).default(resolve('dist/client'), {
+      serveStatic(resolve('dist/client'), {
         index: false,
       })
     );
@@ -41,9 +43,7 @@ export async function createServer() {
       } else {
         modelPage = await readFile(resolve('dist/client/index.html'), 'utf-8');
 
-        // eslint-disable-next-line
-        // @ts-ignore
-        render = (await import('./dist/server/entry-server.js')).render;
+        render = (await vite.ssrLoadModule('/dist/server/entry-server.js')).render;
       }
 
       const parts = modelPage.split('<!--ssr-body-->');

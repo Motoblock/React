@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import { Main } from './page/main/main';
 import { Page404 } from './page/404/404';
@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/forms" element={<Forms />} />
           <Route path="/404" element={<Page404 />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
+          <Route path="*" element={<Page404 />} />
         </Routes>
       </main>
       <Footer />
