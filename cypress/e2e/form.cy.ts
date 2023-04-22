@@ -13,6 +13,7 @@ describe('Forms page test', () => {
     cy.get('#fieldBreed').select('Британская');
     cy.get('#fielsCatterys').select('Compliment');
     cy.get('#fielsCounts').check();
+    cy.get('input[type=file]').selectFile('src/assets/images/logo.png', { force: true });
     cy.get('#formCard').submit();
   });
 

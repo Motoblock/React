@@ -19,7 +19,7 @@
     "resolveJsonModule": true
   },
   "include": ["vite.config.ts", "./src/**/*", "styled.d.ts"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "cypress"],
   "ts-node": {
     "esm": true,
     "transpileOnly": true,
