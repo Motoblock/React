@@ -8,7 +8,7 @@ import serveStatic from 'serve-static';
 import { ViteDevServer, createServer as createViteServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const isProd = !process.env.NODE_ENV;
+const isProd = process.env.NODE_ENV === 'production';
 
 const resolve = (p: string) => path.resolve(__dirname, p);
 const PORT = 3000;
@@ -23,6 +23,9 @@ export async function createServer() {
       appType: 'custom',
     });
     app.use(vite.middlewares);
+    const assetsPath = resolve(isProd ? 'dist/assets' : 'static');
+
+    app.use('/assets', express.static(assetsPath));
   } else {
     app.use(compression());
     app.use(
@@ -46,18 +49,7 @@ export async function createServer() {
         render = (await vite.ssrLoadModule('/dist/server/entry-server.js')).render;
       }
 
-      const parts = modelPage.split('<!--ssr-body-->');
-
-      const { pipe } = await render(url, {
-        onShellReady() {
-          res.write(parts[0]);
-          pipe(res);
-        },
-        onAllReady() {
-          res.write(parts[1]);
-          res.end();
-        },
-      });
+      await render(url, res, modelPage);
     } catch (e) {
       if (e instanceof Error) {
         !isProd && vite.ssrFixStacktrace(e);
@@ -65,13 +57,10 @@ export async function createServer() {
       }
     }
   });
-  return { app };
+
+  app.listen(PORT, () => {
+    console.log('http://localhost:' + PORT);
+  });
 }
 
-createServer()
-  .then(({ app }) =>
-    app.listen(PORT, () => {
-      console.log('http://localhost:' + PORT);
-    })
-  )
-  .catch((e) => console.error(e));
+createServer();

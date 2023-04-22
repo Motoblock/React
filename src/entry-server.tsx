@@ -1,20 +1,73 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import { Provider } from 'react-redux';
+import { Response } from 'express';
+import { Provider as ReduxProvider } from 'react-redux';
 
-import { store } from './store';
+import { RootState, createAppStore } from './store/index';
+import { getCatFetchServer } from './api/api';
 import App from './App';
 
-export const render = (url: string, options?: object) => {
-  return renderToPipeableStream(
-    <React.StrictMode>
-      <Provider store={store}>
+import { initialState as initForms } from './store/formSlice';
+import { initialState as initHeader } from './store/headerSlice';
+import { initialState as initModal } from './store/modalSlice';
+
+const getAppStateTemplate = (state: object) => {
+  const stringifiedAppState = `
+    <script type="text/javascript" id="preloaded-state">
+	    // WARNING: See the following for security issues around embedding JSON in HTML:
+	    // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
+	    window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(/</g, '\\u003c')}
+	  </script>
+  `;
+
+  return stringifiedAppState;
+};
+
+const getTemplateParts = (template: string, state: object) => {
+  const stringifiedAppState = getAppStateTemplate(state);
+
+  return template.replace('<!--app-preload-state-->', stringifiedAppState).split('<!--ssr-body-->');
+};
+
+export const render = (url: string, res: Response, template: string) => {
+  getCatFetchServer((apiResult) => {
+    const preloadedState: RootState = {
+      card: {
+        search: '',
+        items: apiResult || [],
+        isLoading: false,
+        isError: false,
+      },
+      modal: initModal,
+      form: initForms,
+      header: initHeader,
+    };
+
+    const store = createAppStore(preloadedState, true);
+    const [partBefore, partAfter] = getTemplateParts(template, store.getState());
+    res.write(partBefore);
+
+    const { pipe } = renderToPipeableStream(
+      <StrictMode>
         <StaticRouter location={url}>
-          <App />
+          <ReduxProvider store={store}>
+            <App />
+          </ReduxProvider>
         </StaticRouter>
-      </Provider>
-    </React.StrictMode>,
-    options
-  );
+      </StrictMode>,
+      {
+        onShellReady() {
+          pipe(res);
+        },
+        onAllReady() {
+          res.write(partAfter);
+          res.end();
+        },
+        onError(err) {
+          console.error(err);
+        },
+      }
+    );
+  });
 };

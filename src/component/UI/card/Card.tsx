@@ -18,7 +18,8 @@ export const Card = (props: ICardCatProps) => {
 
   let path = '';
   let isShowField = false;
-  if (location.pathname === '/') {
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  if (pathname === '/') {
     path = SERVER_LINK + '/';
     isShowField = false;
   } else {

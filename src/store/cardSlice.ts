@@ -1,7 +1,4 @@
-import * as toolkitRaw from '@reduxjs/toolkit';
-const { createSlice, createAsyncThunk } = (
-  'default' in toolkitRaw ? toolkitRaw.default : toolkitRaw
-) as typeof toolkitRaw;
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from './index';
 import { ICardCatProps } from './../component/UI/card/types';
@@ -14,7 +11,7 @@ interface ICardState {
   isError: boolean;
 }
 
-const initialState: ICardState = {
+export const initialState: ICardState = {
   search: '',
   items: [],
   isLoading: false,
@@ -47,7 +44,7 @@ const cardSlice = createSlice({
     });
     builder.addCase(fetchCards.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.items = action.payload;
+      state.items = [...action.payload];
     });
     builder.addCase(fetchCards.rejected, (state) => {
       state.isLoading = false;

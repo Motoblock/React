@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev nodemon",
-    "serve": "vite preview",
-    "dev:prod": "nodemon",
+    "dev": "nodemon",
     "dev:client": "npm run build:client && vite --config vite.config.ts dev",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",

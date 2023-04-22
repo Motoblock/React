@@ -1,7 +1,4 @@
-import * as toolkitRaw from '@reduxjs/toolkit';
-const { createSlice } = (
-  'default' in toolkitRaw ? toolkitRaw.default : toolkitRaw
-) as typeof toolkitRaw;
+import { createSlice } from '@reduxjs/toolkit';
 
 import { ICardCatProps } from './../component/UI/card/types';
 
@@ -10,7 +7,7 @@ interface ICardNewState {
   cards: ICardCatProps[];
 }
 
-const initialState: ICardNewState = {
+export const initialState: ICardNewState = {
   isConfirm: false,
   cards: [],
 };

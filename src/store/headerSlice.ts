@@ -1,7 +1,4 @@
-import * as toolkitRaw from '@reduxjs/toolkit';
-const { createSlice } = (
-  'default' in toolkitRaw ? toolkitRaw.default : toolkitRaw
-) as typeof toolkitRaw;
+import { createSlice } from '@reduxjs/toolkit';
 
 import { menu } from './../component/util/menu';
 
@@ -9,7 +6,7 @@ interface ICardState {
   title: string;
 }
 
-const initialState: ICardState = {
+export const initialState: ICardState = {
   title: menu('/'),
 };
 

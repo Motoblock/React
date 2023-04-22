@@ -1,7 +1,4 @@
-import * as toolkitRaw from '@reduxjs/toolkit';
-const { createSlice, createAsyncThunk } = (
-  'default' in toolkitRaw ? toolkitRaw.default : toolkitRaw
-) as typeof toolkitRaw;
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from './index';
 import { ICardCatProps } from './../component/UI/card/types';
@@ -14,7 +11,7 @@ interface IModalState {
   isError: boolean;
 }
 
-const initialState: IModalState = {
+export const initialState: IModalState = {
   id: 0,
   item: null,
   isShow: false,
