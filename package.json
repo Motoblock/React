@@ -7,7 +7,7 @@
     "dev": "nodemon",
     "dev:client": "npm run build:client && vite --config vite.config.ts dev",
     "build:client": "vite build --outDir dist/client --ssrManifest",
-    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
+    "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
     "build": "tsc --noEmit -p tsconfig.prod.json && npm run build:client && npm run build:server && npm run copy-files",
     "generate": "vite build --outDir dist/static && npm run build:server && node prerender",
     "copy-files": "copyfiles static/* dist/assets && copyfiles index.html dist && copyfiles -f dist/client/assets/* dist/assets",
@@ -16,11 +16,11 @@
     "coverage": "vitest run --coverage",
     "test:clean": "npx rimraf coverage && npx rimraf .nyc_output",
     "cypress": "cypress open",
-    "cypress:screen": "npx cypress run --e2e && npx nyc report --reporter=text-summary"
+    "cypress:screen": "npx cypress run --e2e && npx nyc report --reporter=text-summary",
+    "ci": "start-server-and-test dev http://localhost:3000 cypress:screen"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
-    "copyfiles": "^2.4.1",
     "express": "^4.18.2",
     "netlify": "^13.1.3",
     "react": "^18.2.0",
@@ -28,8 +28,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "redux-mock-store": "^1.5.4",
-    "serve-static": "^1.15.0",
-    "vite-plugin-html": "^3.2.0"
+    "serve-static": "^1.15.0"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.4",
@@ -50,6 +49,7 @@
     "@vitest/coverage-c8": "^0.29.2",
     "@vitest/coverage-istanbul": "^0.30.1",
     "compression": "^1.7.4",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "cypress": "^12.10.0",
     "eslint": "^8.35.0",
@@ -57,6 +57,7 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest-dom": "^4.0.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -68,11 +69,13 @@
     "react-hook-form": "^7.43.8",
     "react-lorem-ipsum": "^1.4.10",
     "rimraf": "^5.0.0",
+    "start-server-and-test": "^2.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3",
     "typescript-plugin-css-modules": "^4.2.3",
     "vite": "^4.1.0",
     "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-html": "^3.2.0",
     "vite-plugin-istanbul": "^4.0.1",
     "vitest": "^0.30.1"
   },

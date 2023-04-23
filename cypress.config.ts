@@ -1,5 +1,5 @@
+import codeCoverageTask from '@cypress/code-coverage/task';
 import { defineConfig } from 'cypress';
-import coverage from '@cypress/code-coverage/task';
 
 export default defineConfig({
   env: {
@@ -10,7 +10,7 @@ export default defineConfig({
   e2e: {
     baseUrl: 'http://localhost:3000/',
     setupNodeEvents(on, config) {
-      coverage(on, config);
+      codeCoverageTask(on, config);
       return config;
     },
   },
