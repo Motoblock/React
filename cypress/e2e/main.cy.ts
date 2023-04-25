@@ -3,6 +3,9 @@ describe('Home page test', () => {
     cy.visit('/');
     cy.get('input[type=text]').type('брит{enter}');
     cy.get('[data-testid="card"]').should('have.length', 20);
+    cy.get('input[type=text]').type('asdasdasdas{enter}');
+    cy.get('[data-testid="card"]').should('have.length', 0);
+    cy.contains('Ничего не найдено');
   });
 
   it('modal window works', () => {

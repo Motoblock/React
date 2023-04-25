@@ -5,6 +5,8 @@ describe('General routs test', () => {
     cy.url().should('include', '/about');
     cy.contains('Forms').click();
     cy.url().should('include', '/forms');
+    cy.contains('Main').click();
+    cy.url().should('include', '/');
   });
 
   it('Should redirect to 404 page', () => {

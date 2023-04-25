@@ -27,7 +27,7 @@ const getAppStateTemplate = (state: object) => {
 const getTemplateParts = (template: string, state: object) => {
   const stringifiedAppState = getAppStateTemplate(state);
 
-  return template.replace('<!--app-preload-state-->', stringifiedAppState).split('<!--ssr-body-->');
+  return template.replace('<!--ssr-preload-state-->', stringifiedAppState).split('<!--ssr-body-->');
 };
 
 export const render = (url: string, res: Response, template: string) => {
