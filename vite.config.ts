@@ -1,6 +1,6 @@
+/// <reference types="cypress" />
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
-/// <reference types="cypress" />
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
